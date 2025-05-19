@@ -1,4 +1,4 @@
-<footer class="relative w-full pt-16 pb-10 text-white" style="background: url('<?= base_url('public/images/footer-bg.png') ?>') center center / cover no-repeat;">
+<footer class="w-full mt-auto pt-16 pb-10 text-white" style="background: url('<?= base_url('public/images/footer-bg.png') ?>') center center / cover no-repeat;">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
             <h3 class="font-bold text-lg mb-2">Practical Informations</h3>
@@ -72,6 +72,14 @@
 
     function showError(msg) {
         notyf.error(msg);
+    }
+
+    function toPage(url, blank = null) {
+        if (blank != null) {
+            window.open(url, '_blank');
+        } else {
+            window.location.href = url;
+        }
     }
 
     $(document).ready(function() {

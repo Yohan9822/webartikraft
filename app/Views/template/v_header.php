@@ -37,7 +37,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen relative">
     <?php if (!isset($woNav)): ?>
         <?= $this->include('template/v_navbar') ?>
     <?php endif; ?>

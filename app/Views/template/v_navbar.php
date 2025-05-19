@@ -1,5 +1,5 @@
-<nav class="w-full bg-white shadow-lg">
-    <div id="top-bar" class="flex items-center justify-between px-[4rem] py-2 border-b border-gray-200 text-sm transition-all duration-300 ease-in-out max-h-[100px]">
+<nav class="w-full bg-white shadow-lg border-b border-gray-200">
+    <div id="top-bar" class="max-w-7xl mx-auto px-6 flex items-center justify-between px-[4rem] py-2 text-sm transition-all duration-300 ease-in-out max-h-[100px]">
         <div class="flex items-center gap-4">
             <a href="https://www.artikraft.id" class="hover:text-gray-700"><i class="bx bx-globe"></i></a>
             <a href="https://instagram.com/artikraftid" class="hover:text-gray-700"><i class="bx bxl-instagram"></i></a>
@@ -21,23 +21,23 @@
         </div>
     </div>
     <div class="flex justify-center gap-10 pb-4">
-        <a href="#" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
+        <a href="<?= base_url('home') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
             OVERVIEW
             <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
+        <a href="<?= base_url('products') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
             OUR COLLECTION
             <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
+        <a href="<?= base_url('about') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
             WHO WE ARE
             <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
+        <a href="<?= base_url('inquiry') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
             INQUIRY
             <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
+        <a href="<?= base_url('contact') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
             CONTACT INFORMATION
             <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
         </a>
