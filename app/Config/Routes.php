@@ -22,3 +22,15 @@ $routes->group('products', function ($routes) {
 $routes->group('about', function ($routes) {
     $routes->add('', 'AboutController::index');
 });
+/**
+ * Inquiry page
+ */
+$routes->group('inquiry', function ($routes) {
+    $routes->add('', 'InquiryController::index');
+});
+/**
+ * Contact Page
+ */
+$routes->group('contact', function ($routes) {
+    $routes->add('', 'ContactController::index');
+});

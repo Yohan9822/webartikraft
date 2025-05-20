@@ -51,18 +51,7 @@
 <section class="bg-[#EAE8E0] px-10 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
     <div class="group">
         <div class="overflow-hidden">
-            <img src="<?= base_url('public/images/category/1.jpg') ?>" alt="Home Decor" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
-        </div>
-        <div class="mt-4">
-            <button class="w-full bg-[#c7b76c] cursor-pointer text-grey px-6 py-2 rounded-full transform transition-transform duration-300 group-hover:scale-105 hover:bg-[#477524] hover:text-white">
-                HOME DECOR
-            </button>
-        </div>
-    </div>
-
-    <div class="group">
-        <div class="overflow-hidden">
-            <img src="<?= base_url('public/images/category/2.jpg') ?>" alt="Kitchen" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
+            <img src="<?= base_url('public/images/products/kitchen/1.jpg') ?>" alt="KITCHEN" loading="lazy" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
         </div>
         <div class="mt-4">
             <button class="w-full bg-[#c7b76c] cursor-pointer text-grey px-6 py-2 rounded-full transform transition-transform duration-300 group-hover:scale-105 hover:bg-[#477524] hover:text-white">
@@ -73,22 +62,33 @@
 
     <div class="group">
         <div class="overflow-hidden">
-            <img src="<?= base_url('public/images/category/3.jpg') ?>" alt="Small Furniture" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
+            <img src="<?= base_url('public/images/products/storage/1.png') ?>" alt="STORAGE" loading="lazy" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
         </div>
         <div class="mt-4">
             <button class="w-full bg-[#c7b76c] cursor-pointer text-grey px-6 py-2 rounded-full transform transition-transform duration-300 group-hover:scale-105 hover:bg-[#477524] hover:text-white">
-                SMALL FURNITURE
+                STORAGE
             </button>
         </div>
     </div>
 
     <div class="group">
         <div class="overflow-hidden">
-            <img src="<?= base_url('public/images/category/4.jpg') ?>" alt="Bamboo Glueboard" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
+            <img src="<?= base_url('public/images/products/bags/1.jpg') ?>" alt="BAGS" loading="lazy" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
         </div>
         <div class="mt-4">
             <button class="w-full bg-[#c7b76c] cursor-pointer text-grey px-6 py-2 rounded-full transform transition-transform duration-300 group-hover:scale-105 hover:bg-[#477524] hover:text-white">
-                BAMBOO GLUEBOARD
+                BAGS
+            </button>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="overflow-hidden">
+            <img src="<?= base_url('public/images/products/basket/1.png') ?>" alt="BASKET" loading="lazy" class="w-full h-[350px] object-cover rounded-lg shadow-lg" />
+        </div>
+        <div class="mt-4">
+            <button class="w-full bg-[#c7b76c] cursor-pointer text-grey px-6 py-2 rounded-full transform transition-transform duration-300 group-hover:scale-105 hover:bg-[#477524] hover:text-white">
+                BASKET
             </button>
         </div>
     </div>
@@ -96,15 +96,15 @@
 <section class="bg-[#f0e2c6] ">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
         <div>
-            <img src="<?= base_url('public/images/2.jpg') ?>" alt="Produk 1" class="w-full h-[300px] object-cover" />
+            <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk 1" class="w-full h-[300px] object-cover" />
         </div>
 
         <div>
-            <img src="<?= base_url('public/images/4.png') ?>" alt="Produk 2" class="w-full h-[300px] object-cover" />
+            <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk 2" class="w-full h-[300px] object-cover" />
         </div>
 
         <div>
-            <img src="<?= base_url('public/images/6.jpg') ?>" alt="Produk 3" class="w-full h-[300px] object-cover" />
+            <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk 3" class="w-full h-[300px] object-cover" />
         </div>
     </div>
 </section>
@@ -122,38 +122,61 @@
     <h2 class="text-[#473328] font-semibold text-center uppercase text-sm tracking-widest mb-2">Product Overview</h2>
     <div class="w-20 h-1 bg-[#473328] mx-auto mb-10 rounded"></div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="text-center">
-            <img src="<?= base_url('public/images/products/1.png') ?>" alt="Narawita Basket" class="mx-auto h-45 object-contain">
-            <h3 class="font-bold text-sm mt-4">Narawita</h3>
-            <p class="text-xs">Basket with handle<br>41 Dia x 60 (cm)<br>Bamboo</p>
-            <div class="flex justify-center gap-1 mt-2">
-                <div class="w-3 h-3 rounded-full bg-[#5B3E2C]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#CDB398]"></div>
+    <?php
+    $products = [
+        [
+            'productname' => 'Product 1',
+            'description' => 'Kitchen Basket',
+            'category' => 'Kitchen',
+            'size' => '41 Dia x 60 (cm)',
+            'colors' => ['#5B3E2C', '#CDB398'],
+            'image' => base_url('public/images/products/kitchen/2.png'),
+        ],
+        [
+            'productname' => 'Product 2',
+            'description' => 'Product Storage',
+            'category' => 'Storage',
+            'size' => '36 Dia x 56 (cm)',
+            'colors' => ['#5B3E2C', '#CDB398'],
+            'image' => base_url('public/images/products/storage/2.png'),
+        ],
+        [
+            'productname' => 'Product 3',
+            'description' => 'Product Bags',
+            'category' => 'Bags',
+            'size' => '40 Dia x 41.5 (cm), 35 Dia x 37 (cm)',
+            'colors' => [],
+            'image' => base_url('public/images/products/bags/2.png'),
+        ],
+        [
+            'productname' => 'Product 4',
+            'description' => 'Product Basket',
+            'category' => 'Basket',
+            'size' => '36 Dia x 33 (cm)',
+            'colors' => [],
+            'image' => base_url('public/images/products/basket/2.png'),
+        ],
+    ];
+    ?>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8" id="load-datas">
+        <?php foreach ($products as $product): ?>
+            <div class="text-center">
+                <img src="<?= $product['image'] ?>" alt="<?= $product['productname'] ?> Basket" class="mx-auto h-45 object-contain">
+                <h3 class="font-bold text-sm mt-4"><?= $product['productname'] ?></h3>
+                <p class="text-xs">
+                    <?= $product['description'] ?><br>
+                    <?= $product['size'] ?><br>
+                    <?= $product['category'] ?>
+                </p>
+                <?php if (!empty($product['colors'])): ?>
+                    <div class="flex justify-center gap-1 mt-2">
+                        <?php foreach ($product['colors'] as $color): ?>
+                            <div class="w-3 h-3 rounded-full" style="background: <?= $color ?>;"></div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
-        </div>
-
-        <div class="text-center">
-            <img src="<?= base_url('public/images/products/1.png') ?>" alt="Narawita Basket" class="mx-auto h-45 object-contain">
-            <h3 class="font-bold text-sm mt-4">Narawita</h3>
-            <p class="text-xs">Basket with handle<br>36 Dia x 56 (cm)<br>Bamboo</p>
-            <div class="flex justify-center gap-1 mt-2">
-                <div class="w-3 h-3 rounded-full bg-[#5B3E2C]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#CDB398]"></div>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <img src="<?= base_url('public/images/products/1.png') ?>" alt="Cakra Basket" class="mx-auto h-45 object-contain">
-            <h3 class="font-bold text-sm mt-4">Cakra</h3>
-            <p class="text-xs">Multifunction Basket<br>40 Dia x 41.5 (cm)<br>35 Dia x 37 (cm)<br>Bamboo, Leather</p>
-        </div>
-
-        <div class="text-center">
-            <img src="<?= base_url('public/images/products/1.png') ?>" alt="Lamega Basket" class="mx-auto h-45 object-contain">
-            <h3 class="font-bold text-sm mt-4">Lamega</h3>
-            <p class="text-xs">Multifunction Basket<br>36 Dia x 33 (cm)<br>Bamboo</p>
-        </div>
+        <?php endforeach; ?>
     </div>
 </section>
 
@@ -163,19 +186,19 @@
         Alpine.data('slider', () => ({
             active: 0,
             slides: [{
-                    image: '<?= base_url('public/images/1.png') ?>',
+                    image: '<?= base_url('public/images/slider/1.jpg') ?>',
                     text: 'A new and inspirational collection, offering products that embody both timeless elegance and captivating beauty.',
                     button: 'NEW ARRIVALS',
                     position: 'left'
                 },
                 {
-                    image: '<?= base_url('public/images/2.jpg') ?>',
+                    image: '<?= base_url('public/images/slider/2.png') ?>',
                     text: 'Discover our curated selection for your unique lifestyle.',
                     button: 'DISCOVER',
                     position: 'center'
                 },
                 {
-                    image: '<?= base_url('public/images/3.png') ?>',
+                    image: '<?= base_url('public/images/slider/3.jpg') ?>',
                     text: 'Experience the art of living with our exclusive pieces.',
                     button: 'EXPLORE',
                     position: 'right'

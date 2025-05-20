@@ -9,6 +9,8 @@ class ContactController extends BaseController
 {
     public function index()
     {
-        //
+        return view('pages/v_contact', [
+            'title' => 'Contact | Arti Kraft Indonesia',
+        ]);
     }
 }

@@ -5,10 +5,12 @@
             <div class="bg-[#f5f3e7] rounded-xl p-4 shadow-sm">
                 <h2 class="font-bold text-lg mb-6 text-center md:text-left">Category</h2>
                 <ul class="space-y-4">
-                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">HOME DECOR</button></li>
                     <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">KITCHEN</button></li>
-                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">SMALL FURNITURE</button></li>
+                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">STORAGE</button></li>
                     <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">BAMBOO GLUEBOARD</button></li>
+                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">SMALL FURNITURE</button></li>
+                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">BAGS</button></li>
+                    <li><button class="w-full text-left px-5 py-3 rounded-lg bg-[#e0dcc2] hover:bg-[#477524] hover:text-white transition-colors duration-300 cursor-pointer category-btn active:bg-[#477524] active:text-white focus:bg-[#477524] focus:text-white">BASKET</button></li>
                 </ul>
             </div>
         </aside>
@@ -22,7 +24,7 @@
             </div>
             <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="product-card flex flex-col items-center p-4 rounded-lg transition-shadow duration-300 cursor-pointer group hidden hover:shadow-[0_2px_10px_0_#477524]">
-                    <img src="" alt="" class="product-img h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300" />
+                    <img src="" alt="" loading="lazy" class="product-img h-32 object-contain mb-2 group-hover:scale-105 transition-transform duration-300" />
                     <div class="product-name font-bold mt-2"></div>
                     <div class="product-desc text-sm text-center"></div>
                     <div class="product-size text-sm text-center"></div>
@@ -58,16 +60,104 @@
             $(this).addClass('!bg-[#477524] !text-white');
         });
 
-        const products = Array.from({
-            length: 45
-        }, (_, i) => ({
-            name: 'Narawita',
-            desc: 'Basket with handle',
-            size: '41 Dia x 60 (cm)',
-            material: 'Bamboo',
-            img: '<?= base_url('public/images/products/1.png') ?>',
-            colors: ['#2d2217', '#b6b08a', '#e0dcc2'].slice(0, (i % 3) + 1)
-        }));
+        // Dummy product data, bisa ditambah sesuai kebutuhan
+        const products = [{
+                name: 'Product 1',
+                desc: 'Kitchen 1',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/kitchen/3.png') ?>',
+                colors: ['#2d2217', '#b6b08a', '#e0dcc2']
+            },
+            {
+                name: 'Product 2',
+                desc: 'Kitchen 2',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/kitchen/4.png') ?>',
+                colors: ['#2d2217', '#b6b08a', '#e0dcc2']
+            },
+            {
+                name: 'Product 3',
+                desc: 'Storage 1',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/storage/3.png') ?>',
+                colors: ['#2d2217', '#e0dcc2']
+            },
+            {
+                name: 'Product 4',
+                desc: 'Storage 2',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/storage/4.png') ?>',
+                colors: []
+            },
+            {
+                name: 'Product 5',
+                desc: 'Bags 1',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/bags/3.png') ?>',
+                colors: []
+            },
+            {
+                name: 'Product 6',
+                desc: 'Bags 2',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/bags/4.png') ?>',
+                colors: []
+            },
+            {
+                name: 'Product 7',
+                desc: 'Basket 1',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/basket/3.png') ?>',
+                colors: []
+            },
+            {
+                name: 'Product 8',
+                desc: 'Basket 2',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/basket/4.png') ?>',
+                colors: ['#2d2217', '#e0dcc2']
+            },
+            {
+                name: 'Product 9',
+                desc: 'Kitchen 3',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/kitchen/2.png') ?>',
+                colors: ['#2d2217', '#e0dcc2']
+            },
+            {
+                name: 'Product 10',
+                desc: 'Storage 3',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/storage/2.png') ?>',
+                colors: ['#2d2217']
+            },
+            {
+                name: 'Product 11',
+                desc: 'Bags 3',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/bags/2.png') ?>',
+                colors: []
+            },
+            {
+                name: 'Product 12',
+                desc: 'Basket 3',
+                size: '41 Dia x 60 (cm)',
+                material: 'Bamboo',
+                img: '<?= base_url('public/images/products/basket/2.png') ?>',
+                colors: ['#2d2217', '#e0dcc2']
+            },
+        ];
         const perPage = 10;
         let currentPage = 1;
         const totalData = products.length;

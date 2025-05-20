@@ -9,6 +9,8 @@ class InquiryController extends BaseController
 {
     public function index()
     {
-        //
+        return view('pages/v_inquiry', [
+            'title' => 'Inquiry | Arti Kraft Indonesia',
+        ]);
     }
 }

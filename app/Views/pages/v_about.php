@@ -22,14 +22,14 @@
                 </p>
             </div>
             <div class="md:w-1/2 w-full flex justify-center">
-                <img src="<?= base_url('public/images/6.jpg') ?>" alt="Our Story" class="w-full max-w-xl rounded object-cover" style="min-height:320px;max-height:340px;" />
+                <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Our Story" class="w-full max-w-xl rounded object-cover" style="min-height:320px;max-height:340px;" />
             </div>
         </div>
     </div>
 </div>
 <div class="w-full flex flex-col md:flex-row mb-16" style="margin-left:0;margin-right:0;">
     <div class="md:w-1/2 w-full">
-        <img src="<?= base_url('public/images/2.jpg') ?>" alt="Arti Kraft Box" class="w-full h-full object-cover" style="min-height:220px;max-height:260px;" />
+        <img src="<?= base_url('public/images/4.png') ?>" alt="Arti Kraft Box" class="w-full h-full object-cover" style="min-height:220px;max-height:260px;" />
     </div>
     <div class="md:w-1/2 w-full flex flex-col justify-center items-center bg-[#f5f3e7] py-8">
         <div class="mb-8">
@@ -73,9 +73,9 @@
         We offer a wide range of handicrafts and furnishings, featuring everything from home decor to furniture. With a focus on quality and design, we ensure prompt delivery to your doorstep, wherever you are in the world.
     </p>
     <div class="flex flex-col md:flex-row justify-center gap-8">
-        <img src="<?= base_url('public/images/4.png') ?>" alt="Product 1" class="w-60 h-48 object-cover rounded" />
-        <img src="<?= base_url('public/images/5.png') ?>" alt="Product 2" class="w-60 h-48 object-cover rounded" />
-        <img src="<?= base_url('public/images/1.png') ?>" alt="Product 3" class="w-60 h-48 object-cover rounded" />
+        <img src="<?= base_url('public/images/products/basket/1.png') ?>" alt="Product 1" class="w-60 h-48 object-cover rounded" />
+        <img src="<?= base_url('public/images/products/kitchen/1.jpg') ?>" alt="Product 2" class="w-60 h-48 object-cover rounded" />
+        <img src="<?= base_url('public/images/slider/2.png') ?>" alt="Product 3" class="w-60 h-48 object-cover rounded" />
     </div>
 </div>
 <?= $this->include('template/v_footer') ?>
