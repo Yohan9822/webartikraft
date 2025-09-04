@@ -36,75 +36,98 @@
     </div>
 </div>
 <section class="h-max p-6 flex items-center justify-center my-6">
-    <div class="w-[80%] text-center">
+    <div class="w-full text-center px-6 italic flex flex-col gap-5">
         <p class="text-lg leading-relaxed text-black">
             <?= lang('Global.paragraph-1-home') ?>
         </p>
+        <p class="text-gray-800">
+            <?= lang('Global.company-1') ?>
+        </p>
     </div>
 </section>
-<section class="pb-12 grid grid-cols-1 md:grid-cols-2 w-full">
-    <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home-left.jpg') ?>" alt="home left" class="w-full h-[650px] object-cover">
-        <p class="absolute top-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
-            <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
-    </div>
-    <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home-right.png') ?>" alt="home right" class="w-full h-[650px] object-cover object-position-bottom">
-        <p class="absolute bottom-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
-            <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
-    </div>
-</section>
-<section class="splide px-[1rem] md:px-[3rem]" aria-label="Image Slider">
-    <div class="mb-8 flex md:flex-row flex-col items-start justify-between w-full">
-        <h2 class="text-4xl uppercase"><?= lang('Global.inspiration') ?></h2>
-        <div class="flex flex-col items-center justify-center text-[#545454] cursor-pointer hover:text-[#477524]">
-            <span class="text-sm mb-1"><?= lang('Global.view-all') ?></span>
-            <div class="bg-black w-full h-[1.5px]"></div>
+<section class="py-6">
+    <div class="px-[1rem] md:px-[3rem]">
+        <div class="mb-8 flex items-start justify-between w-full">
+            <h2 class="text-4xl uppercase"><?= lang('Global.company-title-1') ?></h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <p class="text-gray-800">
+                <span class="italic font-semibold"><?= lang('Global.parap-company-1') ?></span>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-2') ?>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-3') ?>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-4') ?>
+            </p>
+            <p class="text-gray-800">
+                <span class="italic font-semibold"><?= lang('Global.company-title-2') ?></span>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-5') ?>
+                <br>
+                <br>
+                <span class="italic font-semibold"><?= lang('Global.company-title-3') ?></span>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-6') ?>
+                <br>
+                <br>
+                <?= lang('Global.parap-company-7') ?>
+            </p>
         </div>
     </div>
-    <div class="splide__track">
-        <ul class="splide__list">
-            <?php for ($i = 0; $i <= 15; $i++): ?>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Shellestial Pendant</span>
-                    <span class="text-gray-500">PICHULIK</span>
-                    <span>Rp 500.000,00</span>
-                </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Sleep Ear Cuff - Silver</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 1.250.000,00</span>
-                </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Acrobat Ear Cuff - Gold</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 2.250.000,00</span>
-                </li>
-            <?php endfor; ?>
-        </ul>
+    <div class="my-8">
+        <img src="<?= base_url('public/images/home/4.png') ?>" alt="gambar company" class="w-full h-[650px] object-cover">
     </div>
 </section>
-<section class="py-16 px-[1rem] md:px-[3rem] bg-white text-center">
+<section class="pb-[4rem] px-[1rem] md:px-[3rem]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="flex flex-col gap-5">
+            <div class="mb-8 flex items-start justify-between w-full">
+                <h2 class="text-4xl uppercase"><?= lang('Global.our-vision') ?></h2>
+            </div>
+            <p class="text-gray-800">
+                <?= lang('Global.parap-vision') ?>
+            </p>
+        </div>
+        <div class="flex flex-col gap-5">
+            <div class="mb-8 flex items-start justify-between w-full">
+                <h2 class="text-4xl uppercase"><?= lang('Global.our-value') ?></h2>
+            </div>
+            <p class="text-gray-800">
+                <?= lang('Global.parap-value-1') ?>
+                <br>
+                <br>
+                <?= lang('Global.parap-value-2') ?>
+                <br>
+                <br>
+                <?= lang('Global.parap-value-3') ?>
+            </p>
+        </div>
+    </div>
+</section>
+<section class="py-12 px-[1rem] md:px-[3rem] bg-white text-center">
     <div class="mb-8 flex items-start justify-between w-full">
         <h2 class="text-4xl uppercase"><?= lang('Global.updates') ?></h2>
     </div>
     <div class="flex flex-nowrap overflow-x-auto gap-4 py-4">
         <?php for ($s = 0; $s <= 10; $s++): ?>
             <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
+                <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" />
                 <span class="text-xs text-gray-800">May 28, 2025</span>
                 <span class="font-medium text-base text-gray tracking-[0px]">Exhibition & Pop up Store during 3 Days of Design 18-21 June</span>
             </div>
             <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
+                <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" />
                 <span class="text-xs text-gray-800">June 12, 2025</span>
                 <span class="font-medium text-base text-gray tracking-[0px]">Nada Duele Pop up at WLP Store Berlin 12-14 June</span>
             </div>
             <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
+                <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" />
                 <span class="text-xs text-gray-800">August 05, 2025</span>
                 <span class="font-medium text-base text-gray tracking-[0px]">WLP at Berlin Design Week 15-18 2025</span>
             </div>
@@ -113,22 +136,6 @@
 </section>
 <?= $this->include('template/v_footer') ?>
 <script>
-    $(window).on('load', function() {
-        new Splide('.splide', {
-            type: 'slide',
-            perPage: 5,
-            perMove: 1,
-            gap: '1rem',
-            pagination: false,
-            arrows: true,
-            breakpoints: {
-                768: {
-                    perPage: 1,
-                },
-            }
-        }).mount();
-    })
-
     document.addEventListener('alpine:init', () => {
         Alpine.data('slider', () => ({
             active: 0,

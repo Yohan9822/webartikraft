@@ -1,45 +1,69 @@
-<nav class="w-full bg-white shadow-lg border-b border-gray-200">
-    <div id="top-bar" class="max-w-7xl mx-auto px-6 flex items-center justify-between px-[4rem] py-2 text-sm transition-all duration-300 ease-in-out max-h-[100px]">
-        <div class="flex items-center gap-4">
-            <a href="https://www.artikraft.id" class="hover:text-gray-700"><i class="bx bx-globe"></i></a>
-            <a href="https://instagram.com/artikraftid" class="hover:text-gray-700"><i class="bx bxl-instagram"></i></a>
-            <span class="mx-4 border-l h-4 border-gray-300"></span>
-            <a href="#" class="hover:text-gray-700">Contact us</a>
+<div class="sticky top-0 bg-white z-[999] shadow-lg px-4 lg:px-[3rem]">
+    <nav class="w-full bg-white">
+        <div id="top-bar" class="w-full lg:max-w-7xl mx-auto flex items-center justify-end py-2 text-sm">
+            <div class="relative">
+                <button id="lang-btn" class="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-50 focus:border-none">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover" id="current-lang-flag">
+                    <span class="text-[#545454] text-small" id="current-lang-text">English</span>
+                    <i class="bx bx-chevron-down text-[#477524]"></i>
+                </button>
+                <div id="lang-menu" class="hidden absolute z-[9] right-0 mt-1 w-40 bg-white rounded-md border border-gray-300 shadow-lg">
+                    <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="en">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover">
+                        <?= lang('Global.langopt-en') ?>
+                    </button>
+                    <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="id">
+                        <img src="https://flagcdn.com/w20/id.png" alt="Indonesia" class="w-5 h-3 object-cover">
+                        <?= lang('Global.langopt-id') ?>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div>
-            <select class="border-none bg-transparent text-sm focus:ring-0 focus:outline-none cursor-pointer flex items-center gap-2">
-                <option value="en" class="flex items-center" selected>🇬🇧 English</option>
-                <option value="id" class="flex items-center">🇮🇩 Indonesia</option>
-            </select>
-        </div>
-    </div>
-</nav>
-<div class="sticky top-0 bg-white z-[999] shadow-lg">
-    <div class="flex items-center justify-center px-8 py-6">
+    </nav>
+
+    <div class="flex justify-between items-center lg:justify-center lg:items-end pb-4 gap-6">
         <div class="text-center">
-            <img src="<?= base_url('public/logo_crop.png') ?>" alt="" class="w-32">
+            <img src="<?= base_url('public/logo_crop.png') ?>" alt="Logo Artikraft" class="w-24 lg:w-32">
+        </div>
+
+        <button id="mobile-menu-btn" class="lg:hidden text-2xl text-[#545454] focus:outline-none">
+            <i class='bx bx-menu'></i>
+        </button>
+
+        <div id="desktop-menu" class="hidden lg:flex justify-center items-end gap-10">
+            <a href="<?= base_url('home') ?>" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-home') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="<?= base_url('company') ?>" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-company') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="<?= base_url('furnishing') ?>" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-furnishing') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="<?= base_url('bamboo') ?>" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-bamboo') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="javascript:void(0)" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-updates') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="<?= base_url('contact') ?>" class="relative px-2 py-1 font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+                <?= lang('Global.nav-contact') ?>
+                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
+            </a>
         </div>
     </div>
-    <div class="flex justify-center gap-10 pb-4">
-        <a href="<?= base_url('home') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
-            OVERVIEW
-            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="<?= base_url('products') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
-            OUR COLLECTION
-            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="<?= base_url('about') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
-            WHO WE ARE
-            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="<?= base_url('inquiry') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
-            INQUIRY
-            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="<?= base_url('contact') ?>" class="relative px-2 py-1 font-medium tracking-widest text-base text-gray-900 hover:text-[#477524] group transition-all duration-300">
-            CONTACT INFORMATION
-            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
-        </a>
+
+    <div id="mobile-menu" class="hidden w-full py-4 text-left border-t border-gray-200">
+        <a href="<?= base_url('home') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200"><?= lang('Global.nav-home') ?></a>
+        <a href="<?= base_url('company') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200"><?= lang('Global.nav-company') ?></a>
+        <a href="<?= base_url('furnishing') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200"><?= lang('Global.nav-furnishing') ?></a>
+        <a href="<?= base_url('bamboo') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200"><?= lang('Global.nav-bamboo') ?>O</a>
+        <a href="javascript:void(0)" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200"><?= lang('Global.nav-updates') ?></a>
+        <a href="<?= base_url('contact') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase"><?= lang('Global.nav-contact') ?></a>
     </div>
 </div>

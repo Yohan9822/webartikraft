@@ -10,14 +10,7 @@ class ProductController extends BaseController
     public function index()
     {
         return view('pages/v_product', [
-            'title' => 'Products | Arti Kraft Indonesia',
-        ]);
-    }
-
-    public function detailPage($id)
-    {
-        return view('pages/v_product_detail', [
-            'title' => 'Products Detail | Arti Kraft Indonesia',
+            'title' => strtoupper(lang('Global.nav-furnishing')) . ' | Arti Kraft Indonesia',
         ]);
     }
 }

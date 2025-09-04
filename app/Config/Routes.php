@@ -8,25 +8,25 @@ use CodeIgniter\Router\RouteCollection;
 // Home Page
 $routes->add('/', 'Home::index');
 $routes->add('home', 'Home::index');
+$routes->add('setlanguage', 'Home::setLanguageWeb');
 
 /**
- * Product Page
+ * Company
  */
-$routes->group('products', function ($routes) {
+$routes->group('company', function ($routes) {
+    $routes->add('', 'CompanyController::index');
+});
+/**
+ * Furnishing
+ */
+$routes->group('furnishing', function ($routes) {
     $routes->add('', 'ProductController::index');
-    $routes->add('detail/(:any)', 'ProductController::detailPage/$1');
 });
 /**
- * About Page
+ * Bamboo
  */
-$routes->group('about', function ($routes) {
-    $routes->add('', 'AboutController::index');
-});
-/**
- * Inquiry page
- */
-$routes->group('inquiry', function ($routes) {
-    $routes->add('', 'InquiryController::index');
+$routes->group('bamboo', function ($routes) {
+    $routes->add('', 'BambooController::index');
 });
 /**
  * Contact Page
