@@ -64,26 +64,20 @@
     </div>
     <div class="splide__track">
         <ul class="splide__list">
-            <?php for ($i = 0; $i <= 15; $i++): ?>
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $pr): ?>
+                    <li class="splide__slide flex flex-col">
+                        <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
+                        <span><?= $pr['productname'] ?></span>
+                        <span class="text-gray-500"><?= $pr['category'] ?></span>
+                        <span><?= 'Rp. ' . $pr['price'] ?></span>
+                    </li>
+                <?php endforeach; ?>
+            <?php else: ?>
                 <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Shellestial Pendant</span>
-                    <span class="text-gray-500">PICHULIK</span>
-                    <span>Rp 500.000,00</span>
+                    <i>There is No Data Product</i>
                 </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Sleep Ear Cuff - Silver</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 1.250.000,00</span>
-                </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
-                    <span>Acrobat Ear Cuff - Gold</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 2.250.000,00</span>
-                </li>
-            <?php endfor; ?>
+            <?php endif; ?>
         </ul>
     </div>
 </section>
@@ -92,23 +86,19 @@
         <h2 class="text-4xl uppercase"><?= lang('Global.updates') ?></h2>
     </div>
     <div class="flex flex-nowrap overflow-x-auto gap-4 py-4">
-        <?php for ($s = 0; $s <= 10; $s++): ?>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
-                <span class="text-xs text-gray-800">May 28, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">Exhibition & Pop up Store during 3 Days of Design 18-21 June</span>
+        <?php if (!empty($updates)): ?>
+            <?php foreach ($updates as $up): ?>
+                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
+                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" />
+                    <span class="text-xs text-gray-800"><?= $up['date'] ?></span>
+                    <span class="font-medium text-base text-gray tracking-[0px]"><?= $up['caption'] ?></span>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="w-full flex flex-col flex-shrink-0 items-center justify-center text-left">
+                <i>There is no updates</i>
             </div>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
-                <span class="text-xs text-gray-800">June 12, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">Nada Duele Pop up at WLP Store Berlin 12-14 June</span>
-            </div>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3" />
-                <span class="text-xs text-gray-800">August 05, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">WLP at Berlin Design Week 15-18 2025</span>
-            </div>
-        <?php endfor; ?>
+        <?php endif; ?>
     </div>
 </section>
 <?= $this->include('template/v_footer') ?>
@@ -132,22 +122,7 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('slider', () => ({
             active: 0,
-            slides: [{
-                    image: '<?= base_url('public/images/slider/1.jpg') ?>',
-                    text: '<?= lang('Global.slide-1') ?>',
-                    position: 'left'
-                },
-                {
-                    image: '<?= base_url('public/images/slider/2.png') ?>',
-                    text: '<?= lang('Global.slide-2') ?>',
-                    position: 'center'
-                },
-                {
-                    image: '<?= base_url('public/images/slider/3.jpg') ?>',
-                    text: '<?= lang('Global.slide-3') ?>',
-                    position: 'right'
-                }
-            ],
+            slides: <?= json_encode($slides) ?>,
             interval: null,
             start() {
                 this.interval = setInterval(() => {

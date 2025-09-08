@@ -1,0 +1,46 @@
+@page {
+    visibility: hidden;
+    margin: 10mm 3mm 10mm 3mm;
+    size: A4 portrait
+}
+
+@media screen {
+    .allow-printable #barcode-list {
+        width: 840px;
+        height: 1188px
+    }
+
+    .allow-printable #barcode-list .barcode {
+        width: 279px;
+        height: 117px;
+        float: left;
+        text-align: center
+    }
+}
+
+@media print {
+    .allow-printable #barcode-list {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0
+    }
+
+    .allow-printable #barcode-list .barcode {
+        width: 33%;
+        height: 23.5mm;
+        overflow: hidden;
+        float: left;
+        text-align: center
+    }
+}
+
+.allow-printable #barcode-list .barcode .inner {
+    padding: 5px 10px
+}
+
+.allow-printable #barcode-list .barcode img {
+    max-height: 40px;
+    text-align: center;
+    max-width: 100%
+}

@@ -139,22 +139,7 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('slider', () => ({
             active: 0,
-            slides: [{
-                    image: '<?= base_url('public/images/slider/1.jpg') ?>',
-                    text: '<?= lang('Global.slide-1') ?>',
-                    position: 'left'
-                },
-                {
-                    image: '<?= base_url('public/images/slider/2.png') ?>',
-                    text: '<?= lang('Global.slide-2') ?>',
-                    position: 'center'
-                },
-                {
-                    image: '<?= base_url('public/images/slider/3.jpg') ?>',
-                    text: '<?= lang('Global.slide-3') ?>',
-                    position: 'right'
-                }
-            ],
+            slides: <?= json_encode($slides) ?>,
             interval: null,
             start() {
                 this.interval = setInterval(() => {

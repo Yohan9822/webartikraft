@@ -1,0 +1,61 @@
+@page {
+    visibility: hidden;
+    margin: 0 0;
+    padding: 0
+}
+
+@media screen {
+    .allow-printable #barcode-list {
+        width: 180px
+    }
+
+    .allow-printable #barcode-list .barcode {
+        padding: 5px;
+        border: 1px solid grey;
+        text-align: center
+    }
+}
+
+@media print {
+    .allow-printable #barcode-list {
+        width: 100%
+    }
+
+    .allow-printable #barcode-list .barcode {
+        page-break-after: avoid;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 0
+    }
+}
+
+.allow-printable #barcode-list .barcode .inner {
+    padding: 0 5%
+}
+
+.allow-printable #barcode-list .barcode img {
+    min-height: 25px;
+    max-height: 30px;
+    min-width: 100%;
+    max-width: 100%;
+    margin: auto
+}
+
+.barcode .name {
+    text-align: center;
+    font-size: 1em;
+    padding: 0;
+    line-height: 1em;
+    max-height: 20%;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.barcode .price {
+    text-align: center;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0 auto;
+}

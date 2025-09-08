@@ -75,7 +75,14 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $files = [];
+    public $files = [
+        APPPATH . 'Helpers/function_helpers.php',
+        APPPATH . 'Helpers/components.php',
+        APPPATH . 'Helpers/constants.php',
+        APPPATH . 'Helpers/apps_config.php',
+        APPPATH . 'Helpers/datatype_config.php',
+        APPPATH . 'Helpers/class_helper.php',
+    ];
 
     /**
      * -------------------------------------------------------------------

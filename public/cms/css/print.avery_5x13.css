@@ -1,0 +1,73 @@
+@page {
+    visibility: hidden;
+    margin: 10mm 3mm 10mm 3mm;
+    size: A4 portrait
+}
+
+@media screen {
+    .allow-printable #barcode-list {
+        width: 840px;
+        height: 1188px
+    }
+
+    .allow-printable #barcode-list .barcode {
+        width: 167px;
+        height: 100px;
+        float: left;
+        text-align: center
+    }
+}
+
+@media print {
+    .allow-printable #barcode-list {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0
+    }
+
+    .allow-printable #barcode-list .barcode {
+        width: 20%;
+        height: 20mm;
+        max-height: 20mm;
+        overflow: hidden;
+        float: left;
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+}
+
+.barcode .sku {
+    text-align: center;
+    font-size: 0.6em;
+    font-weight: bold;
+    line-height: 0.8em;
+    padding: 0.2em 0 0 0;
+    margin: 0 auto;
+}
+
+.barcode .name {
+    text-align: center;
+    font-size: 0.6em;
+    padding: 0.2em 0 0 0;
+    margin: -5px auto 0 auto;
+}
+
+.barcode .price {
+    text-align: center;
+    font-size: 0.7em;
+    padding: 2px 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.allow-printable #barcode-list .barcode .inner {
+    padding: 4px 10px
+}
+
+.allow-printable #barcode-list .barcode img {
+    max-height: 40px;
+    text-align: center;
+    max-width: 90%
+}

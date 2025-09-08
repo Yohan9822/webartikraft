@@ -7,7 +7,6 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Config\Services;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -45,6 +44,13 @@ abstract class BaseController extends Controller
     // protected $session;
 
     /**
+     * Database connection
+     *  
+     * @var \CodeIgniter\Database\BaseConnection
+     */
+    protected $db;
+
+    /**
      * @return void
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -55,9 +61,46 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = service('session');
-        if (session()->has('locale')) {
-            $locale = session()->get('locale');
-            Services::language()->setLocale($locale);
-        }
+
+        $this->db = db_connect();
+    }
+
+    public function getPost($index = null, $default = null)
+    {
+        $value = $this->request->getPost($index);
+
+        return !empty($value) ? $value : $default;
+    }
+
+    public function getGet($index = null, $default = null)
+    {
+        $value = $this->request->getGet($index);
+
+        return !empty($value) ? $value : $default;
+    }
+
+    /**
+     * Retrieves a single file by the name of the input field used
+     * to upload it.
+     *
+     * @return \CodeIgniter\HTTP\Files\UploadedFile|null
+     */
+    function getFile($key)
+    {
+        return $this->request->getFile($key);
+    }
+
+    /**
+     * Retrieves a single file by the name of the input field used
+     * to upload it.
+     *
+     * @return \CodeIgniter\HTTP\Files\UploadedFile[]|null
+     */
+    function getFileMultiple($key, $default = null)
+    {
+        if (is_null($this->request->getFileMultiple($key)))
+            return $default;
+
+        return $this->request->getFileMultiple($key);
     }
 }

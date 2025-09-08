@@ -11,6 +11,7 @@ class CompanyController extends BaseController
     {
         return view('pages/v_company', [
             'title' => strtoupper(lang('Global.nav-company')) . ' | Arti Kraft Indonesia',
+            'slides' => getSlideImage()
         ]);
     }
 }
