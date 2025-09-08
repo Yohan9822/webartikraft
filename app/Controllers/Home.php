@@ -11,6 +11,7 @@ class Home extends BaseController
         $dataSlide = getSlideImage();
         $dataProduct = getProducts();
         $dataUpdates = getUpdates();
+
         return view('pages/v_home', [
             'title' => strtoupper(lang('Global.nav-home')) . ' | Arti Kraft Indonesia',
             'slides' => $dataSlide,
@@ -24,7 +25,8 @@ class Home extends BaseController
         $lang = $this->request->getGet('lang');
 
         if (in_array($lang, ['en', 'id'])) {
-            session()->set('locale', $lang);
+            setSession('locale', $lang);
+            service('request')->setLocale($lang);
         }
 
         return $this->response->setJSON(['status' => 'success']);

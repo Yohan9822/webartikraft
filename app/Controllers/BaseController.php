@@ -63,6 +63,9 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
 
         $this->db = db_connect();
+
+        $sessionLocale = getSession('locale') ?? 'en';
+        service('request')->setLocale($sessionLocale);
     }
 
     public function getPost($index = null, $default = null)
