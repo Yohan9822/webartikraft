@@ -137,6 +137,14 @@ $routes->group('cms/the-updates', $isLogged, function ($routes) {
     $routes->add('delete', 'Cms\TheUpdates::delete');
     $routes->add('updatefield', 'Cms\TheUpdates::updateField');
 });
+$routes->group('cms/contentcompany', $isLogged, function ($routes) {
+    $routes->add('', 'Cms\ContentCompany::index');
+    $routes->add('add', 'Cms\ContentCompany::add');
+    $routes->add('update', 'Cms\ContentCompany::update');
+    $routes->add('delete', 'Cms\ContentCompany::delete');
+    $routes->add('upload', 'Cms\ContentCompany::uploadEditor');
+    $routes->add('browse', 'Cms\ContentCompany::browserEditor');
+});
 
 
 // FRONT-END COMPRO

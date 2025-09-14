@@ -28,10 +28,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+        @font-face {
+            font-family: 'TTRamillas';
+            src: url('public/fonts/TT Ramillas Trial Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Font Italic';
+            src: url('public/fonts/TT Ramillas Trial Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
         * {
-            font-family: "GFS Didot", serif;
+            font-family: 'TTRamillas', sans-serif;
+        }
+
+        .italic {
+            font-family: 'Font Italic', sans-serif;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

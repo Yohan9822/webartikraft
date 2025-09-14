@@ -35,81 +35,87 @@
         </template>
     </div>
 </div>
-<section class="h-max p-6 flex items-center justify-center my-6">
-    <div class="w-full text-center px-6 italic flex flex-col gap-5">
-        <p class="text-lg leading-relaxed text-black">
-            <?= lang('Global.paragraph-1-home') ?>
-        </p>
-        <p class="text-gray-800">
-            <?= lang('Global.company-1') ?>
-        </p>
-    </div>
-</section>
-<section class="py-6">
-    <div class="px-[1rem] md:px-[3rem]">
-        <div class="mb-8 flex items-start justify-between w-full">
-            <h2 class="text-4xl uppercase"><?= lang('Global.company-title-1') ?></h2>
+<?php if (!empty($row->content)) : ?>
+    <section class="h-max px-[1rem] md:px-[3rem] my-6">
+        <?= $row->content; ?>
+    </section>
+<?php else: ?>
+    <section class="h-max p-6 flex items-center justify-center my-6">
+        <div class="w-full text-center px-6 flex flex-col gap-5">
+            <p class="text-lg leading-relaxed text-black italic">
+                <?= lang('Global.paragraph-1-home') ?>
+            </p>
+            <p class="text-gray-800">
+                <?= lang('Global.company-1') ?>
+            </p>
         </div>
+    </section>
+    <section class="py-6">
+        <div class="px-[1rem] md:px-[3rem]">
+            <div class="mb-8 flex items-start justify-between w-full">
+                <h2 class="text-4xl uppercase"><?= lang('Global.company-title-1') ?></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <p class="text-gray-800">
+                    <span class="italic font-semibold"><?= lang('Global.parap-company-1') ?></span>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-2') ?>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-3') ?>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-4') ?>
+                </p>
+                <p class="text-gray-800">
+                    <span class="italic font-semibold"><?= lang('Global.company-title-2') ?></span>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-5') ?>
+                    <br>
+                    <br>
+                    <span class="italic font-semibold"><?= lang('Global.company-title-3') ?></span>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-6') ?>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-company-7') ?>
+                </p>
+            </div>
+        </div>
+        <div class="my-8">
+            <img src="<?= base_url('public/images/home/4.png') ?>" alt="gambar company" class="w-full h-[650px] object-cover">
+        </div>
+    </section>
+    <section class="pb-[4rem] px-[1rem] md:px-[3rem]">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <p class="text-gray-800">
-                <span class="italic font-semibold"><?= lang('Global.parap-company-1') ?></span>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-2') ?>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-3') ?>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-4') ?>
-            </p>
-            <p class="text-gray-800">
-                <span class="italic font-semibold"><?= lang('Global.company-title-2') ?></span>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-5') ?>
-                <br>
-                <br>
-                <span class="italic font-semibold"><?= lang('Global.company-title-3') ?></span>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-6') ?>
-                <br>
-                <br>
-                <?= lang('Global.parap-company-7') ?>
-            </p>
-        </div>
-    </div>
-    <div class="my-8">
-        <img src="<?= base_url('public/images/home/4.png') ?>" alt="gambar company" class="w-full h-[650px] object-cover">
-    </div>
-</section>
-<section class="pb-[4rem] px-[1rem] md:px-[3rem]">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="flex flex-col gap-5">
-            <div class="mb-8 flex items-start justify-between w-full">
-                <h2 class="text-4xl uppercase"><?= lang('Global.our-vision') ?></h2>
+            <div class="flex flex-col gap-5">
+                <div class="mb-8 flex items-start justify-between w-full">
+                    <h2 class="text-4xl uppercase"><?= lang('Global.our-vision') ?></h2>
+                </div>
+                <p class="text-gray-800">
+                    <?= lang('Global.parap-vision') ?>
+                </p>
             </div>
-            <p class="text-gray-800">
-                <?= lang('Global.parap-vision') ?>
-            </p>
-        </div>
-        <div class="flex flex-col gap-5">
-            <div class="mb-8 flex items-start justify-between w-full">
-                <h2 class="text-4xl uppercase"><?= lang('Global.our-value') ?></h2>
+            <div class="flex flex-col gap-5">
+                <div class="mb-8 flex items-start justify-between w-full">
+                    <h2 class="text-4xl uppercase"><?= lang('Global.our-value') ?></h2>
+                </div>
+                <p class="text-gray-800">
+                    <?= lang('Global.parap-value-1') ?>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-value-2') ?>
+                    <br>
+                    <br>
+                    <?= lang('Global.parap-value-3') ?>
+                </p>
             </div>
-            <p class="text-gray-800">
-                <?= lang('Global.parap-value-1') ?>
-                <br>
-                <br>
-                <?= lang('Global.parap-value-2') ?>
-                <br>
-                <br>
-                <?= lang('Global.parap-value-3') ?>
-            </p>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 <section class="py-12 px-[1rem] md:px-[3rem] bg-white text-center">
     <div class="mb-8 flex items-start justify-between w-full">
         <h2 class="text-4xl uppercase"><?= lang('Global.updates') ?></h2>
