@@ -1,6 +1,6 @@
 <?= $this->include('template/v_header') ?>
 <div class="w-full mb-5 h-[600px]">
-    <img src="<?= base_url('public/images/products/basket/1.png') ?>" alt="contact image" class="w-full h-full object-cover">
+    <img src="<?= base_url('public/images/home/16.jpg') ?>" alt="contact image" class="w-full h-full object-cover" loading="lazy">
 </div>
 <section class="flex items-center justify-center py-12 px-[1rem] md:px-[3rem]">
     <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">

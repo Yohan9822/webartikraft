@@ -1,11 +1,11 @@
 <?= $this->include('template/v_header') ?>
 <div class="w-full h-full pb-10 flex flex-col gap-8">
-    <img src="<?= base_url('public/images/home/4.png') ?>" alt="gambar furnishing" class="object-cover w-full h-[550px]">
+    <img src="<?= base_url('public/images/home/9.jpg') ?>" alt="gambar furnishing" class="object-cover w-full h-[550px]" loading="lazy">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-2 items-center">
         <p class="px-[1rem] md:px-[3rem] text-gray-800">
             <?= lang('Global.parap-fur-1') ?>
         </p>
-        <img src="<?= base_url('public/images/home/4.png') ?>" alt="gambar furnishing" class="object-cover w-full h-[95%]">
+        <img src="<?= base_url('public/images/home/6.jpg') ?>" alt="gambar furnishing" class="object-cover w-full h-[95%]" loading="lazy">
     </div>
 </div>
 <section class="splide py-16 px-[1rem] md:px-[3rem] bg-white text-center">
@@ -20,19 +20,19 @@
         <ul class="splide__list md:text-left text-center">
             <?php for ($i = 0; $i <= 15; $i++): ?>
                 <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" />
+                    <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
                     <span>Shellestial Pendant</span>
                     <span class="text-gray-500">PICHULIK</span>
                     <span>Rp 500.000,00</span>
                 </li>
                 <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" />
+                    <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
                     <span>Sleep Ear Cuff - Silver</span>
                     <span class="text-gray-500">ALEJANDRA DE COSS</span>
                     <span>Rp 1.250.000,00</span>
                 </li>
                 <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" />
+                    <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
                     <span>Acrobat Ear Cuff - Gold</span>
                     <span class="text-gray-500">ALEJANDRA DE COSS</span>
                     <span>Rp 2.250.000,00</span>

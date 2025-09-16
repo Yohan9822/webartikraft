@@ -44,12 +44,12 @@
 </section>
 <section class="pb-12 grid grid-cols-1 md:grid-cols-2 w-full">
     <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home-left.jpg') ?>" alt="home left" class="w-full h-[650px] object-cover">
+        <img src="<?= base_url('public/images/home/6.jpg') ?>" alt="home left" class="w-full h-[650px] object-cover" loading="lazy">
         <p class="absolute top-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
             <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
     </div>
     <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home-right.png') ?>" alt="home right" class="w-full h-[650px] object-cover object-position-bottom">
+        <img src="<?= base_url('public/images/home/7.jpg') ?>" alt="home right" class="w-full h-[650px] object-cover object-position-bottom" loading="lazy">
         <p class="absolute bottom-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
             <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
     </div>
@@ -67,7 +67,7 @@
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $pr): ?>
                     <li class="splide__slide flex flex-col">
-                        <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
+                        <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
                         <span><?= $pr['productname'] ?></span>
                         <span class="text-gray-500"><?= $pr['category'] ?></span>
                         <span><?= 'Rp. ' . $pr['price'] ?></span>
@@ -89,7 +89,7 @@
         <?php if (!empty($updates)): ?>
             <?php foreach ($updates as $up): ?>
                 <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" />
+                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" loading="lazy" />
                     <span class="text-xs text-gray-800"><?= $up['date'] ?></span>
                     <span class="font-medium text-base text-gray tracking-[0px]"><?= $up['caption'] ?></span>
                 </div>
