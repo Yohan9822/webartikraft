@@ -667,6 +667,7 @@ function getProducts()
             'image' => $dt->payload->logo,
             'category' => $dt->categoryname,
             'productname' => $dt->productname,
+            'dimension' => $dt->dimension,
             'price' => currency($dt->price ?? 0)
         ];
     }

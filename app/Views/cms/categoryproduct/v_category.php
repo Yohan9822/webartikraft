@@ -12,16 +12,11 @@
             <?php endif; ?>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-master table-sm w-100" id="table-product">
+            <table class="table table-bordered table-master table-sm w-100" id="table-category">
                 <thead>
                     <tr>
                         <th data-width="30" data-orderable="false">No</th>
-                        <th data-width="120">Preview</th>
-                        <th data-width="120">Category</th>
-                        <th data-width="175" data-order="asc">Product Name</th>
-                        <th data-width="120">Dimension</th>
-                        <th data-width="120">Material</th>
-                        <th data-width="120">Price</th>
+                        <th data-width="120">Category Name</th>
                         <th data-width="50">Active?</th>
                         <th data-width="110">Created</th>
                         <th data-width="110">Updated</th>
@@ -33,11 +28,11 @@
         </div>
     </div>
 </div>
-<?= $this->endSection() ?>
+<?= $this->endSection(); ?>
 <?= $this->section('script_javascript') ?>
 <script type="text/javascript">
     let elements = {
-        table: $('#table-product'),
+        table: $('#table-category'),
         button: {
             add: $('#btn-add'),
         }
@@ -45,16 +40,16 @@
 
     elements.button.add.on('click', () => modalForm(
         'Form Slide',
-        'modal-lg margin-b-5rem',
-        '<?= getURL('cms/products/form') ?>'
+        'modal-md margin-b-5rem',
+        '<?= getURL('cms/categoryproduct/form') ?>'
     ));
 
-    let tableProduct = elements.table.initDataTable({
+    let tableCategory = elements.table.initDataTable({
         rowCallback: (row) => {
             let $row = $(row);
 
-            $row.find('[data-toggle="products-image"]').formEditable({
-                url: '<?= getURL('cms/products/updatefield') ?>',
+            $row.find('[data-toggle="category-image"]').formEditable({
+                url: '<?= getURL('cms/categoryproduct/updatefield') ?>',
                 action: 'click',
                 value: ($form) => $form.prop('checked'),
             })

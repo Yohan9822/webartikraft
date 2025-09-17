@@ -82,6 +82,8 @@ class Products extends BaseController
                 </div>",
                 $db->categoryname,
                 $db->productname,
+                $db->dimension,
+                ucwords($db->material),
                 "<div class='text-end'>" . currency($db->price ?? 0) . "</div>",
                 $cellIsActive,
                 "<div class='dflex flex-column'>
@@ -140,6 +142,9 @@ class Products extends BaseController
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
         $price = $this->getPost('price');
+        $material = $this->getPost('material');
+        $dimension = $this->getPost('dimension');
+        $description = $this->getPost('description');
 
         $this->db->transBegin();
         try {
@@ -147,7 +152,7 @@ class Products extends BaseController
 
             if (empty($category)) throw new Exception("Product Category is required!");
             if (empty($productname)) throw new Exception("Product name is not filled!");
-            if (empty($price)) throw new Exception("Price is required!");
+            if (empty($material)) throw new Exception("Material is required!");
             if (is_null($file)) throw new Exception("Images required for product");
             if (!is_null($file) && !$file->isValid())
                 throw new \Exception("Invalid image");
@@ -159,10 +164,14 @@ class Products extends BaseController
             }
 
             $category = decrypting($category);
+            $material = decrypting($material);
 
             $insert = [
                 'category' => $category,
                 'productname' => $productname,
+                'material' => $material,
+                'dimension' => $dimension ?? null,
+                'description' => $description ?? null,
                 'price' => removeIdr($price ?? 0),
                 'payload' => json_encode($payload),
                 'isactive' => true,
@@ -196,17 +205,21 @@ class Products extends BaseController
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
         $price = $this->getPost('price');
+        $material = $this->getPost('material');
+        $dimension = $this->getPost('dimension');
+        $description = $this->getPost('description');
 
         $this->db->transBegin();
         try {
             if (empty($category)) throw new Exception("Product Category is required!");
             if (empty($productname)) throw new Exception("Product name is not filled!");
-            if (empty($price)) throw new Exception("Price is required!");
+            if (empty($material)) throw new Exception("Material is required!");
             if (is_null($fileValue)) throw new Exception("Images required for product");
             if (!is_null($file) && !$file->isValid())
                 throw new \Exception("Invalid image");
 
             $category = decrypting($category);
+            $material = decrypting($material);
 
             $row = $this->product->find($id);
 
@@ -228,6 +241,9 @@ class Products extends BaseController
             $update = [
                 'category' => $category,
                 'productname' => $productname,
+                'material' => $material,
+                'dimension' => $dimension ?? null,
+                'description' => $description ?? null,
                 'price' => removeIdr($price ?? 0),
                 'payload' => json_encode($payload),
                 'updateddate' => date('Y-m-d H:i:s'),

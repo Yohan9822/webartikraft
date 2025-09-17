@@ -34,10 +34,31 @@ $isEdit = $form_type == 'edit';
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label class="required">Price</label>
-                        <input type="text" name="price" id="price" onkeyup="price_keyup(this)" class="form-input fs-7" placeholder="e.g Xxxxxx" value="<?= $isEdit ? $row->price : '' ?>" required>
+                        <label>Price</label>
+                        <input type="text" name="price" id="price" onkeyup="price_keyup(this)" class="form-input fs-7" placeholder="e.g Xxxxxx" value="<?= $isEdit ? $row->price : '' ?>">
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="required">Material</label>
+                        <select name="material" id="material" class="form-input fs-7" required>
+                            <option value=""></option>
+                            <?php if ($isEdit) : ?>
+                                <option value="<?= $row->materialcode ?>" selected><?= $row->materialname ?></option>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 dflex flex-column">
+            <div class="form-group">
+                <label>Dimension</label>
+                <textarea name="dimension" id="dimension" rows="3" class="form-input fs-7" placeholder="e.g 250x180x140 mm"><?= $isEdit ? $row->dimension : '' ?></textarea>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" rows="4" id="description" class="form-input fs-7" placeholder="e.g. this product...."><?= $isEdit ? $row->description : '' ?></textarea>
             </div>
         </div>
     </div>
@@ -59,6 +80,7 @@ $isEdit = $form_type == 'edit';
             caption: $('#caption'),
             select: {
                 category: $('#category'),
+                material: $('#material')
             },
             form: $('#form-product')
         };
@@ -78,6 +100,16 @@ $isEdit = $form_type == 'edit';
         elements.select.category.initSelect2({
             dropdownParent: '#modaldetail',
             url: '<?= getURL('cms/api/getproduct-category') ?>',
+            data: (params) => {
+                params.options = {
+                    value: 'typecode'
+                };
+                return params;
+            }
+        });
+        elements.select.material.initSelect2({
+            dropdownParent: '#modaldetail',
+            url: '<?= getURL('cms/api/getproduct-material') ?>',
             data: (params) => {
                 params.options = {
                     value: 'typecode'

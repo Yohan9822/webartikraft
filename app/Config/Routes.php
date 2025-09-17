@@ -117,6 +117,16 @@ $routes->group('cms/slide', $isLogged, function ($routes) {
     $routes->add('delete', 'Cms\SlideImage::delete');
     $routes->add('updatefield', 'Cms\SlideImage::updateField');
 });
+$routes->group('cms/categoryproduct', $isLogged, function ($routes) {
+    $routes->add('', 'Cms\ProductCategory::index');
+    $routes->add('table', 'Cms\ProductCategory::datatable');
+    $routes->add('form', 'Cms\ProductCategory::form');
+    $routes->add('form/(:any)', 'Cms\ProductCategory::form/$1');
+    $routes->add('add', 'Cms\ProductCategory::add');
+    $routes->add('update', 'Cms\ProductCategory::update');
+    $routes->add('delete', 'Cms\ProductCategory::delete');
+    $routes->add('updatefield', 'Cms\ProductCategory::updateField');
+});
 $routes->group('cms/products', $isLogged, function ($routes) {
     $routes->add('', 'Cms\Products::index');
     $routes->add('table', 'Cms\Products::datatable');

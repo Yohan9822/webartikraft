@@ -70,6 +70,7 @@
                         <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
                         <span><?= $pr['productname'] ?></span>
                         <span class="text-gray-500"><?= $pr['category'] ?></span>
+                        <span class="text-xs"><?= $pr['dimension'] ?></span>
                         <span><?= 'Rp. ' . $pr['price'] ?></span>
                     </li>
                 <?php endforeach; ?>

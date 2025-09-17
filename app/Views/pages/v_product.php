@@ -18,26 +18,17 @@
     </div>
     <div class="splide__track">
         <ul class="splide__list md:text-left text-center">
-            <?php for ($i = 0; $i <= 15; $i++): ?>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                    <span>Shellestial Pendant</span>
-                    <span class="text-gray-500">PICHULIK</span>
-                    <span>Rp 500.000,00</span>
-                </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                    <span>Sleep Ear Cuff - Silver</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 1.250.000,00</span>
-                </li>
-                <li class="splide__slide flex flex-col">
-                    <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                    <span>Acrobat Ear Cuff - Gold</span>
-                    <span class="text-gray-500">ALEJANDRA DE COSS</span>
-                    <span>Rp 2.250.000,00</span>
-                </li>
-            <?php endfor; ?>
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $pr): ?>
+                    <li class="splide__slide flex flex-col">
+                        <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
+                        <span><?= $pr['productname'] ?></span>
+                        <span class="text-gray-500"><?= $pr['category'] ?></span>
+                        <span class="text-xs"><?= $pr['dimension'] ?></span>
+                        <span><?= 'Rp. ' . $pr['price'] ?></span>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </ul>
     </div>
 </section>
