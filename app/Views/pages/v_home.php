@@ -14,7 +14,7 @@
             x-transition:leave-end="scale-90 opacity-0"
             class="absolute inset-0 w-full h-full"
             :style="`background: url('${slide.image}') center center / cover no-repeat;`">
-            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0"></div>
             <div
                 class="absolute w-full h-full flex"
                 :class="slide.position === 'left' ? 'items-end justify-start' : (slide.position === 'center' ? 'items-center justify-center' : 'items-start justify-end')">
