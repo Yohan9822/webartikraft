@@ -83,7 +83,7 @@ class Products extends BaseController
                 $db->categoryname,
                 $db->productname,
                 $db->dimension,
-                ucwords($db->material),
+                ucwords($db->materialname),
                 "<div class='text-end'>" . currency($db->price ?? 0) . "</div>",
                 $cellIsActive,
                 "<div class='dflex flex-column'>
