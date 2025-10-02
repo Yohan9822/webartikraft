@@ -71,7 +71,6 @@
                         <span><?= $pr['productname'] ?></span>
                         <span class="text-gray-500"><?= $pr['category'] ?></span>
                         <span class="text-xs"><?= $pr['dimension'] ?></span>
-                        <span><?= 'Rp. ' . $pr['price'] ?></span>
                     </li>
                 <?php endforeach; ?>
             <?php else: ?>

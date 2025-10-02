@@ -85,6 +85,7 @@ class SlideImage extends BaseController
                 </div>",
                 $db->caption,
                 "<div class='text-center'>$db->captionposition</div>",
+                "<div class='text-center'>" . formatBytes($db->payload->size) . "</div>",
                 "<div class='text-center'>$db->slideseq</div>",
                 $cellIsActive,
                 "<div class='dflex flex-column'>
@@ -147,6 +148,7 @@ class SlideImage extends BaseController
         $this->db->transBegin();
         try {
             $payload = (object) [];
+            $fileSize = null;
 
             if (is_null($file)) throw new Exception("Images required for slide");
             if (!empty($caption) && empty($position)) throw new Exception("You need to select a caption position!");
@@ -154,9 +156,13 @@ class SlideImage extends BaseController
                 throw new \Exception("Invalid image");
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/slides");
                 $payload->logo = $fileJson->files();
+
+                $payload->size = $fileSize;
             }
 
             $slideseq = null;
@@ -232,15 +238,51 @@ class SlideImage extends BaseController
             $editFileJson = new FileJsonObject($payload->logo ?? []);
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/slides");
-                $payload->logo = $fileJson->files();
 
-                $editFileJson->removeAll();
+                $payload->logo = $fileJson->files();
+                $payload->size = $fileSize;
+
+                // REVISI UNTUK PENGHAPUSAN FILE LAMA DENGAN RETRY
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break; // Jika berhasil, keluar dari loop retry
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            // Tunggu 50 milidetik sebelum mencoba lagi
+                            usleep(50000);
+                        } else {
+                            // Jika retry terakhir gagal, lempar error asli
+                            throw $e;
+                        }
+                    }
+                }
             } else if (is_null($file) && empty($fileValue)) {
-                $editFileJson->removeAll();
+
+                // REVISI UNTUK PENGHAPUSAN FILE LAMA DENGAN RETRY (Kondisi kedua)
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break; // Jika berhasil, keluar dari loop retry
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            // Tunggu 50 milidetik sebelum mencoba lagi
+                            usleep(50000);
+                        } else {
+                            // Jika retry terakhir gagal, lempar error asli
+                            throw $e;
+                        }
+                    }
+                }
 
                 $payload->logo = $editFileJson->files();
+                unset($payload->size);
             }
 
             $update = [

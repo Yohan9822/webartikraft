@@ -32,12 +32,12 @@ $isEdit = $form_type == 'edit';
                         <input type="text" name="productname" id="productname" class="form-input fs-7" placeholder="e.g Product 1" value="<?= $isEdit ? $row->productname : '' ?>" required>
                     </div>
                 </div>
-                <div class="col-12">
+                <!-- <div class="col-12">
                     <div class="form-group">
                         <label>Price</label>
                         <input type="text" name="price" id="price" onkeyup="price_keyup(this)" class="form-input fs-7" placeholder="e.g Xxxxxx" value="<?= $isEdit ? $row->price : '' ?>">
                     </div>
-                </div>
+                </div> -->
                 <div class="col-12">
                     <div class="form-group">
                         <label class="required">Material</label>

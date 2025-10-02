@@ -107,7 +107,7 @@ class ContentCompany extends BaseController
 
         $id = decrypting($this->getPost('id'));
 
-        $this->aboutus->destroy($id);
+        $this->company->destroy($id);
 
         return $this->response->setStatusCode(200)
             ->setJSON([
@@ -172,6 +172,6 @@ class ContentCompany extends BaseController
             }
         }
 
-        return view('cms/about/file_browser', ['files' => $files]);
+        return view('cms/file_browser', ['files' => $files]);
     }
 }

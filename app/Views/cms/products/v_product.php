@@ -21,7 +21,7 @@
                         <th data-width="175" data-order="asc">Product Name</th>
                         <th data-width="120">Dimension</th>
                         <th data-width="120">Material</th>
-                        <th data-width="120">Price</th>
+                        <th data-width="120">Image Size</th>
                         <th data-width="50">Active?</th>
                         <th data-width="110">Created</th>
                         <th data-width="110">Updated</th>

@@ -84,7 +84,7 @@ class Products extends BaseController
                 $db->productname,
                 $db->dimension,
                 ucwords($db->materialname),
-                "<div class='text-end'>" . currency($db->price ?? 0) . "</div>",
+                "<div class='text-center'>" . formatBytes($db->payload->size ?? 0) . "</div>",
                 $cellIsActive,
                 "<div class='dflex flex-column'>
                     <span class='text-primary fw-semibold'>" . $db->createdname . "</span>
@@ -141,7 +141,6 @@ class Products extends BaseController
         $file = $this->getFile('image');
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
-        $price = $this->getPost('price');
         $material = $this->getPost('material');
         $dimension = $this->getPost('dimension');
         $description = $this->getPost('description');
@@ -158,9 +157,13 @@ class Products extends BaseController
                 throw new \Exception("Invalid image");
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/products");
+
                 $payload->logo = $fileJson->files();
+                $payload->size = $fileSize;
             }
 
             $category = decrypting($category);
@@ -172,7 +175,6 @@ class Products extends BaseController
                 'material' => $material,
                 'dimension' => $dimension ?? null,
                 'description' => $description ?? null,
-                'price' => removeIdr($price ?? 0),
                 'payload' => json_encode($payload),
                 'isactive' => true,
                 'createddate' => date('Y-m-d H:i:s'),
@@ -204,7 +206,6 @@ class Products extends BaseController
         $fileValue = $this->getPost('image_value');
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
-        $price = $this->getPost('price');
         $material = $this->getPost('material');
         $dimension = $this->getPost('dimension');
         $description = $this->getPost('description');
@@ -227,15 +228,44 @@ class Products extends BaseController
             $editFileJson = new FileJsonObject($payload->logo ?? []);
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/products");
-                $payload->logo = $fileJson->files();
 
-                $editFileJson->removeAll();
+                $payload->logo = $fileJson->files();
+                $payload->size = $fileSize;
+
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break;
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            usleep(50000);
+                        } else {
+                            throw $e;
+                        }
+                    }
+                }
             } else if (is_null($file) && empty($fileValue)) {
-                $editFileJson->removeAll();
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break;
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            usleep(50000);
+                        } else {
+                            throw $e;
+                        }
+                    }
+                }
 
                 $payload->logo = $editFileJson->files();
+                unset($payload->size);
             }
 
             $update = [
@@ -244,7 +274,6 @@ class Products extends BaseController
                 'material' => $material,
                 'dimension' => $dimension ?? null,
                 'description' => $description ?? null,
-                'price' => removeIdr($price ?? 0),
                 'payload' => json_encode($payload),
                 'updateddate' => date('Y-m-d H:i:s'),
                 'updatedby' => getSession('userid')

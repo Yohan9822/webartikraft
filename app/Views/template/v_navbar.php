@@ -1,21 +1,34 @@
 <div class="sticky top-0 bg-white z-[999] shadow-lg px-4 lg:px-[3rem]">
     <nav class="w-full bg-white">
         <div id="top-bar" class="w-full lg:max-w-7xl mx-auto flex items-center justify-end py-2 text-sm">
-            <div class="relative">
-                <button id="lang-btn" class="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-50 focus:border-none">
-                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover" id="current-lang-flag">
-                    <span class="text-[#545454] text-small" id="current-lang-text">English</span>
-                    <i class="bx bx-chevron-down text-[#477524]"></i>
-                </button>
-                <div id="lang-menu" class="hidden absolute z-[9] right-0 mt-1 w-40 bg-white rounded-md border border-gray-300 shadow-lg">
-                    <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="en">
-                        <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover">
-                        <?= lang('Global.langopt-en') ?>
+            <div class="relative flex items-center gap-2">
+                <div id="search-wrapper" class="relative">
+                    <button id="search-btn" class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-50 text-[#545454]">
+                        <i class='bx bx-search text-lg'></i>
                     </button>
-                    <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="id">
-                        <img src="https://flagcdn.com/w20/id.png" alt="Indonesia" class="w-5 h-3 object-cover">
-                        <?= lang('Global.langopt-id') ?>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search..."
+                        class="hidden px-3 py-1 h-8 texts-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#477524] w-40">
+                </div>
+
+                <div class="relative">
+                    <button id="lang-btn" class="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-50 focus:border-none">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover" id="current-lang-flag">
+                        <span class="text-[#545454] text-small" id="current-lang-text">English</span>
+                        <i class="bx bx-chevron-down text-[#477524]"></i>
                     </button>
+                    <div id="lang-menu" class="hidden absolute z-[9] right-0 mt-1 w-40 bg-white rounded-md border border-gray-300 shadow-lg">
+                        <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="en">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-3 object-cover">
+                            <?= lang('Global.langopt-en') ?>
+                        </button>
+                        <button class="lang-option flex items-center gap-2 text-small text-[#545454] w-full px-3 py-2 hover:bg-[#477524]/30 text-left rounded cursor-pointer" data-lang="id">
+                            <img src="https://flagcdn.com/w20/id.png" alt="Indonesia" class="w-5 h-3 object-cover">
+                            <?= lang('Global.langopt-id') ?>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,7 +36,7 @@
 
     <div class="flex justify-between items-center lg:justify-center lg:items-end pb-4 gap-6">
         <div class="text-center">
-            <img src="<?= base_url('public/logo_crop.png') ?>" alt="Logo Artikraft" class="w-24 lg:w-32">
+            <img src="<?= base_url('public/logo_crop.png') ?>" alt="Logo Artikraft" class="w-32 lg:w-42">
         </div>
 
         <button id="mobile-menu-btn" class="lg:hidden text-2xl text-[#545454] focus:outline-none">
@@ -67,3 +80,20 @@
         <a href="<?= base_url('contact') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase"><?= lang('Global.nav-contact') ?></a>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        const $searchBtn = $("#search-btn");
+        const $searchInput = $("#search-input");
+
+        $searchBtn.on("click", function() {
+            $searchBtn.addClass("hidden");
+            $searchInput.removeClass("hidden").focus();
+        });
+
+        $searchInput.on("blur", function() {
+            $searchInput.addClass("hidden").val("");
+            $searchBtn.removeClass("hidden");
+        });
+    });
+</script>

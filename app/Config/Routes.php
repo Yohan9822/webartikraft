@@ -155,6 +155,14 @@ $routes->group('cms/contentcompany', $isLogged, function ($routes) {
     $routes->add('upload', 'Cms\ContentCompany::uploadEditor');
     $routes->add('browse', 'Cms\ContentCompany::browserEditor');
 });
+$routes->group('cms/bamboo', $isLogged, function ($routes) {
+    $routes->add('', 'Cms\ContentBamboo::index');
+    $routes->add('add', 'Cms\ContentBamboo::add');
+    $routes->add('update', 'Cms\ContentBamboo::update');
+    $routes->add('delete', 'Cms\ContentBamboo::delete');
+    $routes->add('upload', 'Cms\ContentBamboo::uploadEditor');
+    $routes->add('browse', 'Cms\ContentBamboo::browserEditor');
+});
 
 
 // FRONT-END COMPRO

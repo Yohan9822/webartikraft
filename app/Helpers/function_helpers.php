@@ -699,3 +699,20 @@ function getUpdates()
 
     return $dts;
 }
+
+function formatBytes($bytes, $precision = 2)
+{
+    if (!is_numeric($bytes) || $bytes <= 0) {
+        return '';
+    }
+
+    $base = log($bytes, 1024);
+    $suffixes = ['B', 'KB', 'MB', 'GB', 'TB'];
+
+    $index = floor($base);
+    if ($index >= count($suffixes)) {
+        $index = count($suffixes) - 1;
+    }
+
+    return round(pow(1024, $base - $index), $precision) . ' ' . $suffixes[$index];
+}

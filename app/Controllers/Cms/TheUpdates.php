@@ -81,6 +81,7 @@ class TheUpdates extends BaseController
                     </div>
                 </div>",
                 $db->caption,
+                "<div class='text-center'>" . formatBytes($db->payload->size ?? 0) . "</div>",
                 date('m d Y', strtotime($db->date)),
                 $cellIsActive,
                 "<div class='dflex flex-column'>
@@ -150,9 +151,13 @@ class TheUpdates extends BaseController
                 throw new \Exception("Invalid image");
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/updates");
+
                 $payload->logo = $fileJson->files();
+                $payload->size = $fileSize;
             }
 
             $date = date('Y-m-d', strtotime(str_replace('/', '-', $dateInput)));
@@ -206,15 +211,44 @@ class TheUpdates extends BaseController
             $editFileJson = new FileJsonObject($payload->logo ?? []);
 
             if (!is_null($file) && $file->isValid()) {
+                $fileSize = $file->getSize();
+
                 $fileJson = new FileJsonObject();
                 $fileJson->move($file, "uploads/updates");
-                $payload->logo = $fileJson->files();
 
-                $editFileJson->removeAll();
+                $payload->logo = $fileJson->files();
+                $payload->size = $fileSize;
+
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break;
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            usleep(50000);
+                        } else {
+                            throw $e;
+                        }
+                    }
+                }
             } else if (is_null($file) && empty($fileValue)) {
-                $editFileJson->removeAll();
+                $maxRetries = 3;
+                for ($i = 0; $i < $maxRetries; $i++) {
+                    try {
+                        $editFileJson->removeAll();
+                        break;
+                    } catch (\Exception $e) {
+                        if ($i < $maxRetries - 1) {
+                            usleep(50000);
+                        } else {
+                            throw $e;
+                        }
+                    }
+                }
 
                 $payload->logo = $editFileJson->files();
+                unset($payload->size);
             }
 
             $date = date('Y-m-d', strtotime(str_replace('/', '-', $dateInput)));

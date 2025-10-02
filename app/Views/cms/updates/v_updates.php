@@ -18,6 +18,7 @@
                         <th data-width="30" data-orderable="false">No</th>
                         <th data-width="120">Cover</th>
                         <th data-width="175">Caption</th>
+                        <th data-width="120">Image Size</th>
                         <th data-width="120">Date</th>
                         <th data-width="50">Active?</th>
                         <th data-width="110">Created</th>

@@ -17,11 +17,13 @@ class CompanyController extends BaseController
 
     public function index()
     {
+        $dataUpdates = getUpdates();
         $row = $this->company->getDefaultContent();
         return view('pages/v_company', [
             'title' => strtoupper(lang('Global.nav-company')) . ' | Arti Kraft Indonesia',
             'slides' => getSlideImage(),
             'row' => $row,
+            'updates' => $dataUpdates
         ]);
     }
 }

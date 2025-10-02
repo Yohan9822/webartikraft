@@ -121,23 +121,19 @@
         <h2 class="text-4xl uppercase"><?= lang('Global.updates') ?></h2>
     </div>
     <div class="flex flex-nowrap overflow-x-auto gap-4 py-4">
-        <?php for ($s = 0; $s <= 10; $s++): ?>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/3.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                <span class="text-xs text-gray-800">May 28, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">Exhibition & Pop up Store during 3 Days of Design 18-21 June</span>
+        <?php if (!empty($updates)): ?>
+            <?php foreach ($updates as $up): ?>
+                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
+                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" loading="lazy" />
+                    <span class="text-xs text-gray-800"><?= $up['date'] ?></span>
+                    <span class="font-medium text-base text-gray tracking-[0px]"><?= $up['caption'] ?></span>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="w-full flex flex-col flex-shrink-0 items-center justify-center text-left">
+                <i>There is no updates</i>
             </div>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/2.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                <span class="text-xs text-gray-800">June 12, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">Nada Duele Pop up at WLP Store Berlin 12-14 June</span>
-            </div>
-            <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                <img src="<?= base_url('public/images/home/1.jpg') ?>" alt="Produk" class="w-full h-[450px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                <span class="text-xs text-gray-800">August 05, 2025</span>
-                <span class="font-medium text-base text-gray tracking-[0px]">WLP at Berlin Design Week 15-18 2025</span>
-            </div>
-        <?php endfor; ?>
+        <?php endif; ?>
     </div>
 </section>
 <?= $this->include('template/v_footer') ?>
