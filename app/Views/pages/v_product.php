@@ -9,9 +9,9 @@
                 <h2 class="text-4xl uppercase whitespace-nowrap"><?= lang('Global.products') ?></h2>
                 <span class="text-[#2F5D50] font-semibold">(<span id="count-product">0</span> Products)</span>
             </div>
-            <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
+            <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center w-full md:w-auto">
                 <select name="category" id="filter-category"
-                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#477524] shadow-sm md:w-auto w-full">
+                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#477524] shadow-sm w-full md:w-auto">
                     <option value="">All Categories</option>
                     <?php if (!empty($categories)): ?>
                         <?php foreach ($categories as $cat): ?>
@@ -19,14 +19,14 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
-                <div class="flex items-center border border-gray-300 rounded shadow-sm flex-grow">
+                <div class="flex items-center border border-gray-300 rounded shadow-sm w-full md:w-auto">
                     <input type="text" name="search" id="search-key" placeholder="Search by name..."
                         class="p-2 w-full focus:outline-none focus:ring-0 rounded-l transition-all duration-300">
                 </div>
             </div>
         </div>
         <div class="splide__track">
-            <ul class="splide__list md:text-left text-center h-screen" id="product-list">
+            <ul class="splide__list md:text-left text-center min-h-[200px]" id="product-list">
             </ul>
         </div>
     </section>
