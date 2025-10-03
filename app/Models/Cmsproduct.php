@@ -38,9 +38,9 @@ class Cmsproduct extends BaseModel
         null
     ];
 
-    public function getDataTable()
+    public function getDataTable($search = '', $category = null)
     {
-        return $this->builder
+        $x = $this->builder
             ->select([
                 'p.*',
                 'u.name as createdname',
@@ -53,7 +53,16 @@ class Cmsproduct extends BaseModel
             ->join('master.sttype as tt', 'tt.typecode=p.material', 'left')
             ->join('master.sttype as ty', 'ty.typecode=p.category', 'left')
             ->join('master.msuser as u', 'u.userid=p.createdby', 'left')
-            ->join('master.msuser as uu', 'uu.userid = p.updatedby', 'left')
-            ->orderBy('p.id', 'asc');
+            ->join('master.msuser as uu', 'uu.userid = p.updatedby', 'left');
+
+        if (!empty($search)) {
+            $x->like('lower(p.productname)', strtolower($search));
+        }
+
+        if (!empty($category)) {
+            $x->where('lower(p.category)', strtolower($category));
+        }
+
+        return $x->orderBy('p.id', 'asc');
     }
 }

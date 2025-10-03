@@ -73,16 +73,25 @@ class Products extends BaseController
             $logos = files_preview($db->payload->logo);
             $db->payload->logo = array_shift($logos);
 
+            $sizeDisplay = $db->dimension;
+            if (isJson($db->dimension)) {
+                $sizeData = json_decode($db->dimension, true);
+                if (is_array($sizeData)) {
+                    $activeSizes = array_filter($sizeData, fn($size) => $size['isactive'] == 1);
+                    $sizeDisplay = implode('<br>', array_map(fn($key, $size) => "<b>" . ucfirst($key) . "</b>: " . $size['size'], array_keys($activeSizes), $activeSizes));
+                }
+            }
+
             return [
                 $no,
-                "<div class='dflex align-cente justify-center'>
+                "<div class='dflex align-center justify-center'>
                     <div style='width: 120px;height:120px;background-color:rgba(214, 224, 206);padding:4px;border-radius:4px;overflow:hidden;display:flex;justify-content: center;align-items:center;'>
                         <img src='" . $db->payload->logo . "' alt='slide images' style='width:100%;height:100%;object-fit:contain;'>
                     </div>
                 </div>",
                 $db->categoryname,
                 $db->productname,
-                $db->dimension,
+                $sizeDisplay,
                 ucwords($db->materialname),
                 "<div class='text-center'>" . formatBytes($db->payload->size ?? 0) . "</div>",
                 $cellIsActive,
@@ -142,8 +151,9 @@ class Products extends BaseController
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
         $material = $this->getPost('material');
-        $dimension = $this->getPost('dimension');
+        $dimension = $this->getPost('size');
         $description = $this->getPost('description');
+        $additionalImages = $this->request->getFiles('additional_images');
 
         $this->db->transBegin();
         try {
@@ -166,16 +176,37 @@ class Products extends BaseController
                 $payload->size = $fileSize;
             }
 
+            $additionalImagesPaths = [];
+            if (!empty($additionalImages)) {
+                foreach ($additionalImages as $image) {
+                    if ($image->isValid()) {
+                        $image->move("public/uploads/products");
+                        $additionalImagesPaths[] = $image->getName();
+                    }
+                }
+            }
+
             $category = decrypting($category);
             $material = decrypting($material);
+
+            $dimensionData = [];
+            foreach ($dimension as $key => $values) {
+                $dimensionData[$key] = [
+                    'size' => $values['size'] ?? '',
+                    'weight' => $values['weight'] ?? '',
+                    'color' => $values['color'] ?? '',
+                    'isactive' => $values['isactive'] ?? 0
+                ];
+            }
 
             $insert = [
                 'category' => $category,
                 'productname' => $productname,
                 'material' => $material,
-                'dimension' => $dimension ?? null,
+                'dimension' => json_encode($dimensionData),
                 'description' => $description ?? null,
                 'payload' => json_encode($payload),
+                'additionalimages' => json_encode($additionalImagesPaths),
                 'isactive' => true,
                 'createddate' => date('Y-m-d H:i:s'),
                 'createdby' => getSession('userid')
@@ -207,8 +238,9 @@ class Products extends BaseController
         $category = $this->getPost('category');
         $productname = $this->getPost('productname');
         $material = $this->getPost('material');
-        $dimension = $this->getPost('dimension');
+        $dimension = $this->getPost('size');
         $description = $this->getPost('description');
+        $additionalImages = $this->request->getFiles('additional_images');
 
         $this->db->transBegin();
         try {
@@ -268,13 +300,34 @@ class Products extends BaseController
                 unset($payload->size);
             }
 
+            $additionalImagesPaths = [];
+            if (!empty($additionalImages['additional_images'])) {
+                foreach ($additionalImages['additional_images'] as $image) {
+                    if ($image->isValid()) {
+                        $image->move("public/uploads/products");
+                        $additionalImagesPaths[] = $image->getName();
+                    }
+                }
+            }
+
+            $dimensionData = [];
+            foreach ($dimension as $key => $values) {
+                $dimensionData[$key] = [
+                    'size' => $values['size'] ?? '',
+                    'weight' => $values['weight'] ?? '',
+                    'color' => $values['color'] ?? '',
+                    'isactive' => $values['isactive'] ?? 0
+                ];
+            }
+
             $update = [
                 'category' => $category,
                 'productname' => $productname,
                 'material' => $material,
-                'dimension' => $dimension ?? null,
+                'dimension' => json_encode($dimensionData),
                 'description' => $description ?? null,
                 'payload' => json_encode($payload),
+                'additionalimages' => json_encode($additionalImagesPaths),
                 'updateddate' => date('Y-m-d H:i:s'),
                 'updatedby' => getSession('userid')
             ];

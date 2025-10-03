@@ -648,11 +648,11 @@ function getSlideImage()
     return $dts;
 }
 
-function getProducts()
+function getProducts($search = '', $category = null)
 {
     $product = new Cmsproduct();
 
-    $datas = $product->getDataTable()->where('p.isactive is true')->get()->getResultObject();
+    $datas = $product->getDataTable($search, $category)->where('p.isactive is true')->get()->getResultObject();
 
     if (empty($datas)) return null;
 
@@ -664,6 +664,7 @@ function getProducts()
         $dt->payload->logo = array_shift($logos);
 
         $dts[] = [
+            'id' => encrypting($dt->id),
             'image' => $dt->payload->logo,
             'category' => $dt->categoryname,
             'productname' => $dt->productname,

@@ -135,4 +135,18 @@ class Sttype extends BaseModel
             ->get()
             ->getResultObject();
     }
+
+    public function getByCatCode($catcode)
+    {
+        return $this->builder->select([
+            'tp.typeid',
+            'tp.typecode',
+            'tp.typename',
+            'tp.payload'
+        ])->join('master.stcategory as c', 'c.catid=tp.catid')
+            ->where('lower(c.catcode)', strtolower($catcode))
+            ->orderBy('tp.typename')
+            ->get()
+            ->getResultObject();
+    }
 }

@@ -177,6 +177,8 @@ $routes->group('company', function ($routes) {
  */
 $routes->group('furnishing', function ($routes) {
     $routes->add('', 'ProductController::index');
+    $routes->add('getproducts', 'ProductController::getProducts');
+    $routes->add('detail/(:any)', 'ProductController::detailProduct/$1');
 });
 /**
  * Bamboo

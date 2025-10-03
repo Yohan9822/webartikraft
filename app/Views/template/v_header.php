@@ -27,34 +27,31 @@
     <link rel="stylesheet" href="<?= base_url('public/css/notyf.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         @font-face {
             font-family: 'TTRamillas';
-            src: url('public/fonts/TT Ramillas Trial Regular.ttf') format('truetype');
+            src: url('<?= getURL('public/fonts/fontregular.ttf') ?>') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Font Italic';
-            src: url('public/fonts/TT Ramillas Trial Italic.ttf') format('truetype');
+            src: url('<?= getURL('public/fonts/fontitalic.ttf') ?>') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
         * {
-            font-family: 'TTRamillas', sans-serif;
+            font-family: 'TTRamillas', sans-serif !important;
         }
 
         .italic {
             font-family: 'Font Italic', sans-serif;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-grid@0.4.1/dist/js/splide-extension-grid.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="flex flex-col w-full min-h-screen relative overflow-x-hidden">

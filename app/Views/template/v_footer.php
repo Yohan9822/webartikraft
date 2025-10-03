@@ -86,6 +86,9 @@
     </div>
 </footer>
 <script src="<?= base_url('public/js/notyf.js') ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-grid@0.4.1/dist/js/splide-extension-grid.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script>
     var notyf = new Notyf({
         position: {
