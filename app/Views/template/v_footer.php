@@ -31,7 +31,7 @@
             <div class="w-8 h-1 bg-white mb-4"></div>
             <div class="mb-2">Artikraft Indonesia</div>
             <div class="flex items-start gap-2 mb-2">
-                <i class="fas fa-map-marker-alt mt-1"></i>
+                <i class="bx bx-map mt-1"></i>
                 <span>
                     Jalan Raya Rajapolah RT 002 RW 003 <br>
                     Desa Dewagung, Kecamatan Rajapolah
@@ -39,11 +39,11 @@
                 </span>
             </div>
             <div class="flex items-start gap-2 mb-2">
-                <i class="fas fa-phone mt-1"></i>
+                <i class="bx bx-phone mt-1"></i>
                 <span>P : +62 265 757 0083</span>
             </div>
             <div class="flex items-start gap-2 mb-2">
-                <i class="fas fa-envelope mt-1"></i>
+                <i class="bx bx-envelope mt-1"></i>
                 <span>E : sales@artikraft.id</span>
             </div>
         </div>
@@ -51,8 +51,8 @@
             <h3 class="font-bold text-lg mb-2"><?= lang('Global.footer-title-3') ?></h3>
             <div class="w-8 h-1 bg-white mb-4"></div>
             <div class="flex gap-4 mb-6 text-xl">
-                <a href="https://instagram.com/artikraftid" class="hover:text-[#477524]"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.artikraft.id" class="hover:text-[#477524]"><i class="fas fa-globe"></i></a>
+                <a href="https://instagram.com/artikraftid" class="hover:text-[#477524]"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.artikraft.id" class="hover:text-[#477524]"><i class="bx bx-globe"></i></a>
             </div>
 
             <h3 class="font-bold text-lg mb-2"><?= lang('Global.footer-title-4') ?></h3>

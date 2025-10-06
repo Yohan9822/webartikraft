@@ -692,6 +692,7 @@ function getUpdates()
         $dt->payload->logo = array_shift($logos);
 
         $dts[] = [
+            'id' => encrypting($dt->id),
             'image' => $dt->payload->logo,
             'caption' => $dt->caption,
             'date' => date('M d, Y', strtotime($dt->date)),

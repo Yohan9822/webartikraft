@@ -33,6 +33,7 @@
 </div>
 <?= $this->endSection() ?>
 <?= $this->section('script_javascript') ?>
+<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script type="text/javascript">
     let elements = {
         table: $('#table-updates'),
@@ -43,7 +44,7 @@
 
     elements.button.add.on('click', () => modalForm(
         'Form Slide',
-        'modal-lg margin-b-5rem',
+        'modal-xl margin-b-5rem',
         '<?= getURL('cms/the-updates/form') ?>'
     ));
 

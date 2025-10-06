@@ -65,7 +65,7 @@
                 <?= lang('Global.nav-bamboo') ?>
                 <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <a href="javascript:void(0)" class="relative px-2 py-1 nav-link font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
+            <a href="<?= base_url('updates') ?>" class="relative px-2 py-1 nav-link font-normal tracking-[1px] uppercase text-sm text-[#545454] hover:text-[#477524] group transition-all duration-300">
                 <?= lang('Global.nav-updates') ?>
                 <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#477524] transition-all duration-300 group-hover:w-full"></span>
             </a>
@@ -82,7 +82,7 @@
         <a href="<?= base_url('company') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200 nav-link"><?= lang('Global.nav-company') ?></a>
         <a href="<?= base_url('furnishing') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200 nav-link"><?= lang('Global.nav-furnishing') ?></a>
         <a href="<?= base_url('bamboo') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200 nav-link"><?= lang('Global.nav-bamboo') ?></a>
-        <a href="javascript:void(0)" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200 nav-link"><?= lang('Global.nav-updates') ?></a>
+        <a href="<?= base_url('updates') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase border-b border-gray-200 nav-link"><?= lang('Global.nav-updates') ?></a>
         <a href="<?= base_url('contact') ?>" class="block py-2 text-sm text-[#545454] hover:text-[#477524] uppercase nav-link"><?= lang('Global.nav-contact') ?></a>
     </div>
 </div>

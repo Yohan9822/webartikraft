@@ -146,6 +146,8 @@ $routes->group('cms/the-updates', $isLogged, function ($routes) {
     $routes->add('update', 'Cms\TheUpdates::update');
     $routes->add('delete', 'Cms\TheUpdates::delete');
     $routes->add('updatefield', 'Cms\TheUpdates::updateField');
+    $routes->add('upload', 'Cms\TheUpdates::uploadEditor');
+    $routes->add('browse', 'Cms\TheUpdates::browserEditor');
 });
 $routes->group('cms/contentcompany', $isLogged, function ($routes) {
     $routes->add('', 'Cms\ContentCompany::index');
@@ -191,4 +193,11 @@ $routes->group('bamboo', function ($routes) {
  */
 $routes->group('contact', function ($routes) {
     $routes->add('', 'ContactController::index');
+});
+/**
+ * Updates Page
+ */
+$routes->group('updates', function ($routes) {
+    $routes->add('', 'Home::updatesPage');
+    $routes->add('detail/(:any)', 'Home::updateDetail/$1');
 });

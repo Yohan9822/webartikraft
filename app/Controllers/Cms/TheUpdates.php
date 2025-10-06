@@ -48,7 +48,7 @@ class TheUpdates extends BaseController
             $btnEdit = ButtonComponents::editModalDataTable(
                 "Update Product",
                 getURL("cms/the-updates/form/$encryptId"),
-                ['modalSize' => 'modal-lg']
+                ['modalSize' => 'modal-xl']
             );
 
             $btnDelete = ButtonComponents::deleteModalDataTable(
@@ -139,6 +139,7 @@ class TheUpdates extends BaseController
         $file = $this->getFile('image');
         $caption = $this->getPost('caption');
         $dateInput = $this->getPost('update');
+        $description = $this->getPost('description');
 
         $this->db->transBegin();
         try {
@@ -166,6 +167,7 @@ class TheUpdates extends BaseController
                 'payload'     => json_encode($payload),
                 'caption'     => $caption,
                 'date'        => $date,
+                'description' => $description ?? '',
                 'isactive'    => true,
                 'createddate' => date('Y-m-d H:i:s'),
                 'createdby'   => getSession('userid')
@@ -196,6 +198,7 @@ class TheUpdates extends BaseController
         $fileValue = $this->getPost('image_value');
         $caption = $this->getPost('caption');
         $dateInput = $this->getPost('update');
+        $description = $this->getPost('description');
 
         $this->db->transBegin();
         try {
@@ -257,6 +260,7 @@ class TheUpdates extends BaseController
                 'payload'     => json_encode($payload),
                 'caption'     => $caption,
                 'date'        => $date,
+                'description' => $description ?? '',
                 'updateddate' => date('Y-m-d H:i:s'),
                 'updatedby' => getSession('userid')
             ];
@@ -313,5 +317,64 @@ class TheUpdates extends BaseController
             'sukses' => 1,
             'pesan' => 'Sucessfully'
         ]);
+    }
+
+    public function uploadEditor()
+    {
+        if ($this->request->getMethod() !== 'POST') {
+            return $this->response->setJSON([
+                'uploaded' => false,
+                'error' => ['message' => 'Invalid request method.']
+            ]);
+        }
+
+        $file = $this->request->getFile('upload');
+        if (!$file->isValid()) {
+            return $this->response->setJSON([
+                'uploaded' => false,
+                'error' => ['message' => $file->getErrorString()]
+            ]);
+        }
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($file->getMimeType(), $allowedTypes)) {
+            return $this->response->setJSON([
+                'uploaded' => false,
+                'error' => ['message' => 'Invalid file type. Only JPEG, PNG, and GIF are allowed.']
+            ]);
+        }
+
+        $uploadPath = FCPATH . 'public/uploads/updates/';
+        validate_dir($uploadPath);
+
+        $newName = $file->getRandomName();
+        $file->move($uploadPath, $newName);
+
+        $fileUrl = base_url('public/uploads/updates/' . $newName);
+
+        return $this->response->setJSON([
+            'uploaded' => true,
+            'url' => $fileUrl
+        ]);
+    }
+
+    public function browserEditor()
+    {
+        $directory = FCPATH . 'public/uploads/updates/';
+        $files = [];
+
+        if (is_dir($directory)) {
+            $scan = scandir($directory);
+            foreach ($scan as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $files[] = [
+                        'url' => base_url('public/uploads/updates/' . $file),
+                        'name' => $file
+                    ];
+                }
+            }
+        }
+
+        return view('cms/file_browser', ['files' => $files]);
     }
 }
