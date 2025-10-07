@@ -68,6 +68,17 @@ class Products extends BaseController
                 ])
             );
 
+            $cellInspiration = FormComponents::builder(
+                'inspiration-product',
+                FormComponents::checkbox('isactive', [
+                    'checked' => $db->setinspiration == 't',
+                    'attributes' => [
+                        'data-id' => $encryptId,
+                        'data-column' => 'setinspiration',
+                    ]
+                ])
+            );
+
             $db->payload = json_decode($db->payload ?? '{}');
 
             $logos = files_preview($db->payload->logo);
@@ -94,6 +105,7 @@ class Products extends BaseController
                 $sizeDisplay,
                 ucwords($db->materialname),
                 "<div class='text-center'>" . formatBytes($db->payload->size ?? 0) . "</div>",
+                $cellInspiration,
                 $cellIsActive,
                 "<div class='dflex flex-column'>
                     <span class='text-primary fw-semibold'>" . $db->createdname . "</span>

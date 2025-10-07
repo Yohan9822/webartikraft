@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="my-8">
-            <img src="<?= base_url('public/images/home/8.jpg') ?>" alt="gambar company" class="w-full h-[650px] object-cover" loading="lazy">
+            <img data-src="<?= base_url('public/images/home/8.jpg') ?>" alt="gambar company" class="lazy w-full h-[650px] object-cover">
         </div>
     </section>
     <section class="pb-[4rem] px-[1rem] md:px-[3rem]">
@@ -123,8 +123,8 @@
     <div class="flex flex-nowrap overflow-x-auto gap-4 py-4">
         <?php if (!empty($updates)): ?>
             <?php foreach ($updates as $up): ?>
-                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" loading="lazy" />
+                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start transition-all duration-300 cursor-pointer hover:brightness-80 text-left" onclick="toPage('<?= getURL('updates/detail/' . $up['id']) ?>')">
+                    <img data-src="<?= $up['image'] ?>" alt="Updates" class="lazy w-full h-[450px] object-cover mb-3" />
                     <span class="text-xs text-gray-800"><?= $up['date'] ?></span>
                     <span class="font-medium text-base text-gray tracking-[0px]"><?= $up['caption'] ?></span>
                 </div>

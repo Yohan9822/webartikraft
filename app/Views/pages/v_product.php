@@ -1,7 +1,7 @@
 <?= $this->include('template/v_header') ?>
 
 <div class="w-full h-full pb-10 flex flex-col gap-8">
-    <img src="<?= base_url('public/images/home/9.jpg') ?>" alt="gambar furnishing" class="object-cover w-full h-[550px]" loading="lazy">
+    <img data-src="<?= base_url('public/images/home/9.jpg') ?>" alt="gambar furnishing" class="lazy object-cover w-full h-[550px]">
 
     <section class="splide py-16 px-[1rem] md:px-[3rem] bg-white text-center">
         <div class="mb-8 flex md:flex-row flex-col items-start justify-between w-full gap-4">
@@ -11,7 +11,7 @@
             </div>
             <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center w-full md:w-auto">
                 <select name="category" id="filter-category"
-                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#477524] shadow-sm w-full md:w-auto">
+                    class="p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#477524] shadow-sm w-full md:w-auto">
                     <option value="">All Categories</option>
                     <?php if (!empty($categories)): ?>
                         <?php foreach ($categories as $cat): ?>
@@ -19,9 +19,9 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
-                <div class="flex items-center border border-gray-300 rounded shadow-sm w-full md:w-auto">
+                <div class="flex items-center border border-gray-300 shadow-sm w-full md:w-auto">
                     <input type="text" name="search" id="search-key" placeholder="Search by name..."
-                        class="p-2 w-full focus:outline-none focus:ring-0 rounded-l transition-all duration-300">
+                        class="p-2 w-full focus:outline-none focus:ring-0 transition-all duration-300">
                 </div>
             </div>
         </div>
@@ -54,10 +54,10 @@
         let skeletonHtml = '';
         const skeletonItem = `
         <li class="splide__slide flex flex-col animate-pulse product-skeleton"> 
-            <div class="w-full h-[200px] bg-gray-200 mb-3 rounded shadow-lg"></div>
-            <div class="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
-            <div class="h-3 bg-gray-200 rounded w-1/2 mb-1"></div>
-            <div class="h-3 bg-gray-200 rounded w-1/4 text-xs"></div>
+            <div class="w-full h-[200px] bg-gray-200 mb-3 shadow-lg"></div>
+            <div class="h-4 bg-gray-200 w-3/4 mb-1"></div>
+            <div class="h-3 bg-gray-200 w-1/2 mb-1"></div>
+            <div class="h-3 bg-gray-200 w-1/4 text-xs"></div>
         </li>
     `;
         for (let i = 0; i < count; i++) {
@@ -108,20 +108,31 @@
                             }
 
                             html += `
-                        <li class="splide__slide flex flex-col product-item cursor-pointer transition-all duration-300 hover:brightness-80" style="opacity: 0;" onclick="detailProduct('${datas[i]['id']}')">
-                            <img src="${datas[i]['image']}" 
-                                 alt="Produk" 
-                                 class="w-full h-[200px] object-cover mb-3 rounded shadow-lg" 
-                                 loading="lazy"
-                                 onload="this.parentNode.style.opacity=1; handleImageLoading();" />
-                            <span class="product-name">${datas[i]['productname']}</span>
-                            <span class="product-category text-gray-500">${datas[i]['category']}</span>
-                            <span class="text-xs">${dimensionDisplay}</span>
-                        </li>
+                            <li class="splide__slide flex flex-col product-item cursor-pointer transition-all duration-300 hover:brightness-90 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 lg:h-[320px]" onclick="detailProduct('${datas[i]['id']}')">
+                                <div class="relative w-full flex-shrink-0">
+                                    <img data-src="${datas[i]['image']}" 
+                                        alt="Produk" 
+                                        class="lazy w-full h-[200px] sm:h-[220px] object-cover rounded-lg shadow-md transition-transform duration-300" 
+                                        onload="this.parentNode.parentNode.style.opacity=1;" />
+                                </div>
+                                <div class="flex flex-col text-center mt-2 sm:mt-3">
+                                    <span class="product-name text-[14px] sm:text-[15px] font-medium leading-tight">${datas[i]['productname']}</span>
+                                    <span class="product-category text-gray-500 text-xs sm:text-sm mt-[2px]">${datas[i]['category']}</span>
+                                    <span class="text-xs sm:text-[13px] mt-[1px]">${dimensionDisplay}</span>
+                                </div>
+                            </li>
                         `;
                         }
                         $('#product-list').append(html);
                         productSplide = loadSplide();
+
+                        if (lazyLoadInstance) {
+                            lazyLoadInstance.update();
+                        } else {
+                            lazyLoadInstance = new LazyLoad({
+                                elements_selector: ".lazy"
+                            });
+                        }
 
                     } else {
                         $('.splide').removeClass('skeleton-mode');

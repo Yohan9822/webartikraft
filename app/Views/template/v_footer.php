@@ -89,6 +89,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-grid@0.4.1/dist/js/splide-extension-grid.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.8.3/lazyload.min.js"></script>
+
 <script>
     var notyf = new Notyf({
         position: {
@@ -113,12 +115,20 @@
         }
     }
 
+    const lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy"
+    });
+
     $(document).ready(function() {
         $('#toTopBtn').click(function() {
             $('html, body').animate({
                 scrollTop: 0
             }, 1000);
         });
+
+        setTimeout(() => {
+            $('body').addClass('loaded');
+        }, 500);
 
         $('#liveChatBtn').click(function() {
             showError('Live chat feature coming soon!');

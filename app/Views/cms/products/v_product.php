@@ -22,6 +22,7 @@
                         <th data-width="120">Dimension</th>
                         <th data-width="120">Material</th>
                         <th data-width="120">Image Size</th>
+                        <th data-width="50">Inspiration?</th>
                         <th data-width="50">Active?</th>
                         <th data-width="110">Created</th>
                         <th data-width="110">Updated</th>
@@ -54,6 +55,12 @@
             let $row = $(row);
 
             $row.find('[data-toggle="products-image"]').formEditable({
+                url: '<?= getURL('cms/products/updatefield') ?>',
+                action: 'click',
+                value: ($form) => $form.prop('checked'),
+            })
+
+            $row.find('[data-toggle="inspiration-product"]').formEditable({
                 url: '<?= getURL('cms/products/updatefield') ?>',
                 action: 'click',
                 value: ($form) => $form.prop('checked'),

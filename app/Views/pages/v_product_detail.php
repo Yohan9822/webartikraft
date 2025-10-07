@@ -4,18 +4,18 @@
         <div class="md:w-1/2 w-full flex flex-col">
             <div class="w-full flex justify-center mb-4">
                 <div class="main-image-parent overflow-hidden rounded-lg border w-full h-120 flex items-center justify-center cursor-zoom-in">
-                    <img id="main-image" src="<?= base_url('public/images/products/basket/4.png') ?>" alt="Product Image" class="w-full h-full object-contain transition-transform duration-300" />
+                    <img id="main-image" data-src="<?= base_url('public/images/products/basket/4.png') ?>" alt="Product Image" class="lazy w-full h-full object-contain transition-transform duration-300" />
                 </div>
             </div>
             <div class="flex gap-2 justify-left">
                 <div class="thumb-parent overflow-hidden rounded border w-16 h-16 flex items-center justify-center cursor-zoom-in">
-                    <img src="<?= base_url('public/images/products/basket/4.png') ?>" class="thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
+                    <img data-src="<?= base_url('public/images/products/basket/4.png') ?>" class="lazy thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
                 </div>
                 <!-- <div class="thumb-parent overflow-hidden rounded border w-16 h-16 flex items-center justify-center cursor-zoom-in">
-                    <img src="<?= base_url('public/images/products/1.png') ?>" class="thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
+                    <img data-src="<?= base_url('public/images/products/1.png') ?>" class="thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
                 </div>
                 <div class="thumb-parent overflow-hidden rounded border w-16 h-16 flex items-center justify-center cursor-zoom-in">
-                    <img src="<?= base_url('public/images/6.jpg') ?>" class="thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
+                    <img data-src="<?= base_url('public/images/6.jpg') ?>" class="thumb-img w-16 h-16 object-contain transition-transform duration-300 rounded" />
                 </div> -->
             </div>
         </div>

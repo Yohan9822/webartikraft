@@ -669,7 +669,8 @@ function getProducts($search = '', $category = null)
             'category' => $dt->categoryname,
             'productname' => $dt->productname,
             'dimension' => $dt->dimension,
-            'price' => currency($dt->price ?? 0)
+            'price' => currency($dt->price ?? 0),
+            'inspiration' => $dt->setinspiration
         ];
     }
 

@@ -1,6 +1,6 @@
 <div class="sticky top-0 bg-white z-[999] shadow-lg px-4 lg:px-[3rem]">
     <nav class="w-full bg-white">
-        <div id="top-bar" class="w-full lg:max-w-7xl mx-auto flex items-center justify-end py-2 text-sm">
+        <div id="top-bar" class="w-full mx-auto flex items-center justify-end py-2 text-sm">
             <div class="relative flex items-center gap-2">
                 <!-- Search -->
                 <div id="search-wrapper" class="relative">

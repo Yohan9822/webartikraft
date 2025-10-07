@@ -51,10 +51,43 @@
         .italic {
             font-family: 'Font Italic', sans-serif;
         }
+
+        @keyframes loadingbar {
+            0% {
+                left: -50%;
+                width: 50%;
+            }
+
+            50% {
+                left: 25%;
+                width: 50%;
+            }
+
+            100% {
+                left: 100%;
+                width: 50%;
+            }
+        }
+
+        .animate-loadingbar {
+            animation: loadingbar 1.5s infinite ease-in-out;
+        }
+
+        body.loaded #preloader {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
     </style>
 </head>
 
 <body class="flex flex-col w-full min-h-screen relative overflow-x-hidden">
+    <div id="preloader" class="fixed inset-0 bg-white flex flex-col items-center justify-center z-[9999]">
+        <img src="<?= base_url('public/logo_crop.png') ?>" alt="Logo" class="w-32 h-auto mb-6 animate-pulse">
+        <div class="w-64 h-1 bg-gray-200 rounded-full overflow-hidden relative">
+            <div class="absolute left-0 top-0 h-full bg-[#477524] animate-loadingbar"></div>
+        </div>
+    </div>
     <?php if (!isset($woNav)): ?>
         <?= $this->include('template/v_navbar') ?>
     <?php endif; ?>

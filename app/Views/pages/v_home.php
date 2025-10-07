@@ -44,12 +44,12 @@
 </section>
 <section class="pb-12 grid grid-cols-1 md:grid-cols-2 w-full">
     <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home/6.jpg') ?>" alt="home left" class="w-full h-[650px] object-cover" loading="lazy">
+        <img data-src="<?= base_url('public/images/home/6.jpg') ?>" alt="home left" class="lazy w-full h-[650px] object-cover">
         <p class="absolute top-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
             <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
     </div>
     <div class="relative w-full h-[650px]">
-        <img src="<?= base_url('public/images/home/7.jpg') ?>" alt="home right" class="w-full h-[650px] object-cover object-position-bottom" loading="lazy">
+        <img data-src="<?= base_url('public/images/home/7.jpg') ?>" alt="home right" class="lazy w-full h-[650px] object-cover object-position-bottom">
         <p class="absolute bottom-5 left-5 text-[17px] text-gray-800 font-medium leading-relaxed w-[75%]">
             <?= lang('Global.paragraph-2-home') ?> <a href="javascript:void(0)" class="text-gray font-semibold cursor-pointer italic hover:text-[#477524]"><?= lang('Global.clickMore') ?></a></p>
     </div>
@@ -57,7 +57,7 @@
 <section class="splide px-[1rem] md:px-[3rem]" aria-label="Image Slider">
     <div class="mb-8 flex md:flex-row flex-col items-start justify-between w-full">
         <h2 class="text-4xl uppercase"><?= lang('Global.inspiration') ?></h2>
-        <div class="flex flex-col items-center justify-center text-[#545454] cursor-pointer hover:text-[#477524]">
+        <div class="flex flex-col items-center justify-center text-[#545454] cursor-pointer hover:text-[#477524]" onclick="toPage('<?= getURL('furnishing') ?>')">
             <span class="text-sm mb-1"><?= lang('Global.view-all') ?></span>
             <div class="bg-black w-full h-[1.5px]"></div>
         </div>
@@ -66,12 +66,37 @@
         <ul class="splide__list">
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $pr): ?>
-                    <li class="splide__slide flex flex-col">
-                        <img src="<?= $pr['image'] ?>" alt="Produk" class="w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" loading="lazy" />
-                        <span><?= $pr['productname'] ?></span>
-                        <span class="text-gray-500"><?= $pr['category'] ?></span>
-                        <span class="text-xs"><?= $pr['dimension'] ?></span>
-                    </li>
+                    <?php if ($pr['inspiration'] == 't'): ?>
+                        <li class="splide__slide flex flex-col cursor-pointer hover:brightness-80 transition-all duration-300" onclick="toPage('<?= getURL('furnishing/detail/' . $pr['id']) ?>')">
+                            <img data-src="<?= $pr['image'] ?>" alt="Produk" class="lazy w-full h-[300px] md:h-[200px] object-cover mb-3 rounded shadow-lg" />
+                            <span><?= $pr['productname'] ?></span>
+                            <span class="text-gray-500"><?= $pr['category'] ?></span>
+                            <span class="text-xs">
+                                <?php
+                                $dimension_data = json_decode($pr['dimension'], true);
+                                $output_dimensions = [];
+
+                                if (json_last_error() === JSON_ERROR_NONE && is_array($dimension_data) && !empty($dimension_data)) {
+                                    foreach ($dimension_data as $key => $dim_details) {
+                                        if (is_array($dim_details) && isset($dim_details['isactive']) && $dim_details['isactive'] == '1') {
+                                            if (!empty($dim_details['size'])) {
+                                                $output_dimensions[] = ucfirst($key) . ' : ' . $dim_details['size'];
+                                            }
+                                        }
+                                    }
+
+                                    if (!empty($output_dimensions)) {
+                                        echo implode('<br>', $output_dimensions);
+                                    } else {
+                                        echo 'Ukuran tidak tersedia.';
+                                    }
+                                } else {
+                                    echo $pr['dimension'];
+                                }
+                                ?>
+                            </span>
+                        </li>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php else: ?>
                 <li class="splide__slide flex flex-col">
@@ -88,8 +113,8 @@
     <div class="flex flex-nowrap overflow-x-auto gap-4 py-4">
         <?php if (!empty($updates)): ?>
             <?php foreach ($updates as $up): ?>
-                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start text-left">
-                    <img src="<?= $up['image'] ?>" alt="Updates" class="w-full h-[450px] object-cover mb-3" loading="lazy" />
+                <div class="w-full md:w-1/3 flex flex-col flex-shrink-0 items-start justify-start transition-all duration-300 cursor-pointer hover:brightness-80 text-left" onclick="toPage('<?= getURL('updates/detail/' . $up['id']) ?>')">
+                    <img data-src="<?= $up['image'] ?>" alt="Updates" class="lazy w-full h-[450px] object-cover mb-3" />
                     <span class="text-xs text-gray-800"><?= $up['date'] ?></span>
                     <span class="font-medium text-base text-gray tracking-[0px]"><?= $up['caption'] ?></span>
                 </div>
