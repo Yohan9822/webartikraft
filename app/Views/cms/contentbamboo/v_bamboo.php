@@ -204,10 +204,11 @@
                 success: function(response) {
                     if (response.success && response.view) {
                         $('#load-page').html(response.view);
-                        loadToggle();
                     } else {
                         showError('Failed to switch language.');
                     }
+                    loadToggle();
+                    imageLoad();
                 },
                 error: function() {
                     showError('An error occurred while switching language.');
