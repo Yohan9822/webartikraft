@@ -1,4 +1,26 @@
 <?= $this->include('template/v_header') ?>
+<?php
+
+use App\Models\Cmsfullcontent;
+
+$lang = service('request')->getLocale();
+
+$fullContent = new Cmsfullcontent();
+
+$companyImage1 = "";
+$getRow = $fullContent->getByKey($lang, 'company-image-1');
+if (!empty($getRow)) {
+    $getRow->payload = json_decode($getRow->payload ?? '{}');
+
+    if (!empty($getRow->payload->image))
+        $getRow->payload->image = json_encode(files_preview($getRow->payload->image));
+
+    $getRow->payload->image = json_decode($getRow->payload->image, true);
+    $companyImage1 = $getRow->payload->image[0];
+} else {
+    $companyImage1 = base_url('public/images/home/8.jpg');
+}
+?>
 <div
     x-data="slider()"
     x-init="init()"
@@ -43,7 +65,7 @@
     <section class="h-max p-6 flex items-center justify-center my-6">
         <div class="w-full text-center px-6 flex flex-col gap-5">
             <p class="text-lg leading-relaxed text-black italic">
-                <?= lang('Global.paragraph-1-home') ?>
+                <?= lang('Global.paragraph-1-company') ?>
             </p>
             <p class="text-gray-800">
                 <?= lang('Global.company-1') ?>
@@ -86,7 +108,7 @@
             </div>
         </div>
         <div class="my-8">
-            <img data-src="<?= base_url('public/images/home/8.jpg') ?>" alt="gambar company" class="lazy w-full h-[650px] object-cover">
+            <img data-src="<?= $companyImage1 ?>" alt="gambar company" class="lazy w-full h-[650px] object-cover">
         </div>
     </section>
     <section class="pb-[4rem] px-[1rem] md:px-[3rem]">

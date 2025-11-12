@@ -30,38 +30,38 @@
         </div>
     </div>
 
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white shadow-lg overflow-hidden mt-4">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white border border-[#477524]/15 shadow-lg overflow-hidden mt-4">
         <div class="h-full">
             <img data-src="<?= base_url('public/images/home/15.jpg') ?>" alt="Inquiry Image" class="lazy w-full h-full object-cover">
         </div>
 
         <div class="p-6 md:p-8">
-            <h2 class="text-xl font-semibold mb-4 text-[#477524]">Send Us an Inquiry</h2>
+            <h2 class="text-xl font-semibold mb-4 text-[#477524]"><?= lang('Global.contact-send') ?></h2>
             <form action="<?= base_url('contact/send') ?>" method="post" class="grid grid-cols-1 gap-4">
                 <div class="space-y-5">
                     <div>
-                        <input type="text" name="name" required placeholder="Your Name"
+                        <input type="text" name="name" required placeholder="<?= lang('Global.contact-placeholder-name') ?>"
                             class="w-full px-5 py-3 border border-gray-300 shadow-sm 
                        focus:outline-none focus:border-[#477524] focus:ring-1 focus:ring-[#477524] 
                        transition-all duration-300 placeholder-gray-500">
                     </div>
 
                     <div>
-                        <input type="email" name="email" required placeholder="Your Email"
+                        <input type="email" name="email" required placeholder="<?= lang('Global.contact-placeholder-email') ?>"
                             class="w-full px-5 py-3 border border-gray-300 shadow-sm 
                        focus:outline-none focus:border-[#477524] focus:ring-1 focus:ring-[#477524] 
                        transition-all duration-300 placeholder-gray-500">
                     </div>
 
                     <div>
-                        <input type="text" name="subject" required placeholder="Subject"
+                        <input type="text" name="subject" required placeholder="<?= lang('Global.contact-placeholder-subject') ?>"
                             class="w-full px-5 py-3 border border-gray-300 shadow-sm 
                        focus:outline-none focus:border-[#477524] focus:ring-1 focus:ring-[#477524] 
                        transition-all duration-300 placeholder-gray-500">
                     </div>
 
                     <div>
-                        <textarea name="message" rows="5" required placeholder="Your Message"
+                        <textarea name="message" rows="5" required placeholder="<?= lang('Global.contact-placeholder-message') ?>"
                             class="w-full px-5 py-3 border border-gray-300 shadow-sm 
                        focus:outline-none focus:border-[#477524] focus:ring-1 focus:ring-[#477524] 
                        transition-all duration-300 placeholder-gray-500"></textarea>
@@ -74,7 +74,7 @@
                        duration-300 flex gap-3 uppercase justify-center items-center 
                        tracking-wider">
                             <i class="bx bx-paper-plane text-lg"></i>
-                            Send Message
+                            <?= lang('Global.contact-button') ?>
                         </button>
                     </div>
                 </div>

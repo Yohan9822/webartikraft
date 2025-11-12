@@ -25,14 +25,28 @@ $isEdit = $form_type == 'edit';
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="form-group">
-                        <label>Caption Position</label>
-                        <select name="position" id="position" class="form-input fs-7">
-                            <option value=""></option>
-                            <?php if ($isEdit) : ?>
-                                <option value="<?= $row->typecode ?>" selected><?= $row->captionposition ?></option>
-                            <?php endif; ?>
-                        </select>
+                    <div class="row gutter-sm">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Caption Position</label>
+                                <select name="position" id="position" class="form-input fs-7">
+                                    <option value=""></option>
+                                    <?php if ($isEdit) : ?>
+                                        <option value="<?= $row->typecode ?>" selected><?= $row->captionposition ?></option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Slide Type</label>
+                                <select name="slidetype" id="slidetype" class="form-input fs-7">
+                                    <option value=""></option>
+                                    <option value="home" <?= $isEdit && $row->slidetype == 'home' ? 'selected' : '' ?>>Home</option>
+                                    <option value="company" <?= $isEdit && $row->slidetype == 'company' ? 'selected' : '' ?>>Company</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -87,6 +101,10 @@ $isEdit = $form_type == 'edit';
                 };
                 return params;
             }
+        });
+
+        $('#slidetype').initSelect2({
+            dropdownParent: '#modaldetail',
         });
 
         elements.caption.doneTyping(function(el) {

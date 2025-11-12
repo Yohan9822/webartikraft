@@ -83,6 +83,7 @@ class LoginController extends BaseController
         setSession('companyname', $session->companyname);
         setSession('usertype', $session->typename);
         setSession('usertypeid', $session->usertypeid);
+        setSession('cms_lang', 'en');
 
         return $this->response->setStatusCode(200)
             ->setJSON([

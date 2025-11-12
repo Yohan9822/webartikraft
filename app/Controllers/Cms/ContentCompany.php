@@ -29,7 +29,10 @@ class ContentCompany extends BaseController
         $data['title'] = 'Content Company | Cms';
         $data['section'] = 'Content Company';
         $data['breadcrumb'] = $this->breadcrumb;
-        $data['row'] = $this->company->getDefaultContent();
+        $data['slides'] =  getSlideImage('company');
+        $data['forTemplate'] = false;
+        $data['lang'] = getSession('cms_lang') ?? 'en';
+        $data['content'] = getLangArray($data['lang']) ?? 'en';
 
         return view('cms/contentcompany/v_company', $data);
     }

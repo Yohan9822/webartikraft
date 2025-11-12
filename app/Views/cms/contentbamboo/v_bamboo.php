@@ -1,76 +1,220 @@
 <?= $this->extend('cms/template/v_main') ?>
 
 <?= $this->section('content') ?>
+<style>
+    @font-face {
+        font-family: 'TTRamillas';
+        src: url('<?= getURL('public/fonts/fontregular.ttf') ?>') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Font Italic';
+        src: url('<?= getURL('public/fonts/fontitalic.ttf') ?>') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .main-content * {
+        font-family: 'TTRamillas', sans-serif !important;
+    }
+
+    .italic {
+        font-family: 'Font Italic', sans-serif;
+    }
+
+    .editable-text[contenteditable="true"]:hover {
+        outline: 2px dashed #ccc;
+        cursor: text;
+    }
+</style>
 <div class="main-content content margin-t-4">
-    <div class="card w-100 rounded shadow-sm p-x" style="position: relative;">
-        <div class="card-header dflex justify-end">
-            <?php if (getAccess(AccessCode::create)) : ?>
-                <button class="btn btn-primary btn-xs btn-icon-text" id="btn-add">
-                    <i class="bx bx-save"></i>
-                    <span class="fw-normal fs-7"><?= !empty($row) ? 'Update Content' : 'Save Content' ?></span>
+    <div class="card w-100 rounded shadow-sm" style="position: relative;padding:12px;">
+        <div class="dflex align-center justify-between">
+            <span>
+                Update <b class="text-primary"><i>ENGINEERED BAMBOO</i></b> menu content
+            </span>
+
+            <div class="btn-group" role="group" aria-label="Language switcher">
+                <button
+                    type="button"
+                    class="btn btn-secondary dflex align-center lang-btn fs-7"
+                    style="width: 110px;"
+                    data-lang="id">
+                    <img src="https://flagcdn.com/w20/id.png" alt="Indonesia" class="me-2">
+                    Indonesia
                 </button>
-            <?php endif; ?>
+                <button
+                    type="button"
+                    class="btn btn-primary dflex align-center lang-btn fs-7 active"
+                    style="width: max-content;"
+                    data-lang="en">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="me-2">
+                    English
+                </button>
+            </div>
         </div>
-        <div class="card-body">
-            <form action="<?= !empty($row) ? getURL('cms/bamboo/update') : getURL('cms/bamboo/add') ?>" id="form-bamboo" method="post" style="padding-inline: 0px;">
-                <input type="hidden" id="id" name="id" value="<?= !empty($row) ? encrypting($row->id) : '' ?>">
-                <div class="form-group">
-                    <textarea name="content_bamboo" id="content_bamboo" class="form-input" placeholder="Enter Company content"><?= !empty($row) ? $row->content : '' ?></textarea>
-                </div>
-            </form>
+
+        <link rel="stylesheet" href="<?= base_url('public/css/boxicons.css') ?>">
+        <link rel="stylesheet" href="<?= base_url('public/css/notyf.css') ?>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <div class="border mt-4" id="load-page">
+            <?= $this->include('cms/contentbamboo/contentbamboo') ?>
         </div>
     </div>
 </div>
 <?= $this->endSection(); ?>
 <?= $this->section('script_javascript') ?>
-<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
-    $(document).ready(function() {
-        CKEDITOR.replace('content_bamboo', {
-            versionCheck: false,
-            height: 600,
-            extraPlugins: 'filebrowser',
-            filebrowserUploadUrl: '<?= getURL("cms/bamboo/upload") ?>',
-            filebrowserBrowseUrl: '<?= getURL("cms/bamboo/browse") ?>'
+    let currentKey = null;
+    let currentImage = null;
+    let lastContent = {};
+
+    function imageLoad() {
+        $('.editable-image').hover(function() {
+            $(this).find('.edit-btn').fadeIn(200);
+        }, function() {
+            $(this).find('.edit-btn').fadeOut(200);
         });
 
-        let elements = {
-            form: $('#form-bamboo'),
-            submitBtn: $('#btn-add')
-        };
+        $('.edit-btn').on('click', function() {
+            const parent = $(this).closest('.editable-image');
+            const key = parent.data('key');
+            const globalInput = $('#global-image-input');
 
-        elements.form.formSubmit({
-            beforeSubmit: () => {
-                console.log('Before Submit Called');
+            globalInput.data('targetKey', key);
+            globalInput.data('parentSelector', `[data-key="${key}"]`);
+            globalInput.click();
+        });
+    }
 
-                const contentData = CKEDITOR.instances.content_bamboo.getData();
-                console.log('CKEditor Data:', contentData);
+    function loadToggle() {
+        $('.editable-text[contenteditable="true"]').on('input', function() {
+            const el = $(this);
+            const key = el.data('key');
+            lastContent[key] = el.html().trim();
+        });
 
-                elements.form.find('[name="content_bamboo"]').val(contentData);
-                return true;
-            },
-            successCallback: (res) => {
-                close_modal('modaldetail');
+        $('.editable-text[contenteditable="true"]').on('blur', function() {
+            const el = $(this);
+            const key = el.data('key');
+            const content = lastContent[key] ?? el.html().trim();
 
-                showNotif(res.sukses == '1' ? 'success' : 'error', res.pesan);
+            if (el.data('updating')) return;
+            el.data('updating', true);
 
-                if (res.sukses == '1') {
-                    if (res.link) {
-                        setTimeout(() => {
-                            window.location.href = res.link;
-                        }, 250);
-                    }
+            $.ajax({
+                url: '<?= base_url('cms/updatefullcontent') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    key,
+                    menu: 'bamboo',
+                    content,
+                    _t: new Date().getTime()
+                },
+                success: function(response) {
+                    if (!response.success) showError(response.pesan);
+                },
+                error: function(xhr, status, error) {
+                    showError(error);
+                },
+                complete: function() {
+                    el.data('updating', false);
                 }
-            },
-            errorCallback: (err) => {
-                console.error('Error:', err);
-                showNotif('error', 'An error occurred while submitting the form.');
-            }
+            });
         });
 
-        elements.submitBtn.click(function() {
-            elements.form.trigger('submit');
-        })
+        // proses update image
+        $('#global-image-input').on('change', function() {
+            const file = this.files[0];
+            const targetKey = $(this).data('targetKey');
+            const parent = $(`.editable-image[data-key="${targetKey}"]`);
+            const imgEl = parent.find('img');
+
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('File must be an image (jpg, png, dll)');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('key', targetKey);
+            formData.append('menu', 'bamboo');
+
+            const oldSrc = imgEl.attr('src');
+            imgEl.css('opacity', '0.5');
+
+            $.ajax({
+                url: '<?= base_url('cms/updateimage') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    try {
+                        if (response.success == 1 && response.url) {
+                            $('#load-page').html(response.view);
+                        } else {
+                            showError('Failed updating image ' + response.pesan);
+                            imgEl.attr('src', oldSrc);
+                        }
+                        imageLoad();
+                        loadToggle();
+                    } catch (e) {
+                        showError('Error parsing response');
+                        imgEl.attr('src', oldSrc);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    showError(thrownError);
+                    imgEl.attr('src', oldSrc);
+                },
+                complete: function() {
+                    imgEl.css('opacity', '1');
+                    $('#global-image-input').val('');
+                }
+            });
+        });
+    }
+
+    $(document).ready(function() {
+        loadToggle();
+        imageLoad()
+
+        // change language
+        $(document).on('click', '.lang-btn', function() {
+            const selectedLang = $(this).data('lang');
+
+            $.ajax({
+                url: '<?= base_url('cms/switchLang') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    lang: selectedLang,
+                    menu: 'bamboo'
+                },
+                success: function(response) {
+                    if (response.success && response.view) {
+                        $('#load-page').html(response.view);
+                        loadToggle();
+                    } else {
+                        showError('Failed to switch language.');
+                    }
+                },
+                error: function() {
+                    showError('An error occurred while switching language.');
+                }
+            });
+        });
+
     });
 </script>
 <?= $this->endSection(); ?>

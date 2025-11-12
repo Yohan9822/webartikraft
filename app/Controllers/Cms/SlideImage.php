@@ -84,6 +84,7 @@ class SlideImage extends BaseController
                     </div>
                 </div>",
                 $db->caption,
+                "<div class='text-center'>" . ucwords($db->slidetype) . "</div>",
                 "<div class='text-center'>$db->captionposition</div>",
                 "<div class='text-center'>" . formatBytes($db->payload->size) . "</div>",
                 "<div class='text-center'>$db->slideseq</div>",
@@ -144,14 +145,22 @@ class SlideImage extends BaseController
         $caption = $this->getPost('caption');
         $position = $this->getPost('position');
         $sequence = $this->getPost('sequence');
+        $type = $this->getPost('slidetype');
 
         $this->db->transBegin();
         try {
             $payload = (object) [];
             $fileSize = null;
 
-            if (is_null($file)) throw new Exception("Images required for slide");
-            if (!empty($caption) && empty($position)) throw new Exception("You need to select a caption position!");
+            if (is_null($file))
+                throw new Exception("Images required for slide");
+
+            if (!empty($caption) && empty($position))
+                throw new Exception("You need to select a caption position!");
+
+            if (empty($type))
+                throw new Exception("Slide type is required!");
+
             if (!is_null($file) && !$file->isValid())
                 throw new \Exception("Invalid image");
 
@@ -181,6 +190,7 @@ class SlideImage extends BaseController
                 'caption' => $caption,
                 'payload' => json_encode($payload),
                 'slideseq' => $slideseq,
+                'slidetype' => $type,
                 'isactive' => true,
                 'captiontype' => $position,
                 'createddate' => date('Y-m-d H:i:s'),
@@ -212,13 +222,21 @@ class SlideImage extends BaseController
         $caption = $this->getPost('caption');
         $position = $this->getPost('position');
         $sequence = $this->getPost('sequence');
+        $type = $this->getPost('slidetype');
 
         $this->db->transBegin();
         try {
-            if (is_null($fileValue)) throw new Exception("Images required for slide");
-            if (!empty($caption) && empty($position)) throw new Exception("You need to select a caption position!");
+            if (is_null($fileValue))
+                throw new Exception("Images required for slide");
+
+            if (!empty($caption) && empty($position))
+                throw new Exception("You need to select a caption position!");
+
             if (!is_null($file) && !$file->isValid())
                 throw new \Exception("Invalid image");
+
+            if (empty($type))
+                throw new Exception("Slide type is required!");
 
             $row = $this->slides->find($id);
 
@@ -246,36 +264,29 @@ class SlideImage extends BaseController
                 $payload->logo = $fileJson->files();
                 $payload->size = $fileSize;
 
-                // REVISI UNTUK PENGHAPUSAN FILE LAMA DENGAN RETRY
                 $maxRetries = 3;
                 for ($i = 0; $i < $maxRetries; $i++) {
                     try {
                         $editFileJson->removeAll();
-                        break; // Jika berhasil, keluar dari loop retry
+                        break;
                     } catch (\Exception $e) {
                         if ($i < $maxRetries - 1) {
-                            // Tunggu 50 milidetik sebelum mencoba lagi
                             usleep(50000);
                         } else {
-                            // Jika retry terakhir gagal, lempar error asli
                             throw $e;
                         }
                     }
                 }
             } else if (is_null($file) && empty($fileValue)) {
-
-                // REVISI UNTUK PENGHAPUSAN FILE LAMA DENGAN RETRY (Kondisi kedua)
                 $maxRetries = 3;
                 for ($i = 0; $i < $maxRetries; $i++) {
                     try {
                         $editFileJson->removeAll();
-                        break; // Jika berhasil, keluar dari loop retry
+                        break;
                     } catch (\Exception $e) {
                         if ($i < $maxRetries - 1) {
-                            // Tunggu 50 milidetik sebelum mencoba lagi
                             usleep(50000);
                         } else {
-                            // Jika retry terakhir gagal, lempar error asli
                             throw $e;
                         }
                     }
@@ -289,6 +300,7 @@ class SlideImage extends BaseController
                 'caption' => $caption,
                 'payload' => json_encode($payload),
                 'slideseq' => $slideseq,
+                'slidetype' => $type,
                 'captiontype' => $position,
                 'updateddate' => date('Y-m-d H:i:s'),
                 'updatedby' => getSession('userid')
@@ -296,9 +308,8 @@ class SlideImage extends BaseController
 
             $this->slides->edit($update, $id);
 
-            if (!db_connect()->affectedRows()) {
+            if (!db_connect()->affectedRows())
                 log_message('debug', $this->db->getLastQuery()->getQuery());
-            }
 
             $this->db->transCommit();
             return $this->response

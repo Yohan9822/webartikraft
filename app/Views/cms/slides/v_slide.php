@@ -18,6 +18,7 @@
                         <th data-width="30" data-orderable="false">No</th>
                         <th data-width="120">Preview</th>
                         <th data-width="175" data-order="asc">Caption</th>
+                        <th data-width="90">Slide For?</th>
                         <th data-width="120">Caption Position</th>
                         <th data-width="50">Image Size</th>
                         <th data-width="50">Sequence</th>

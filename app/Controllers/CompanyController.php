@@ -19,9 +19,10 @@ class CompanyController extends BaseController
     {
         $dataUpdates = getUpdates();
         $row = $this->company->getDefaultContent();
+
         return view('pages/v_company', [
             'title' => strtoupper(lang('Global.nav-company')) . ' | Arti Kraft Indonesia',
-            'slides' => getSlideImage(),
+            'slides' => getSlideImage('company'),
             'row' => $row,
             'updates' => $dataUpdates
         ]);

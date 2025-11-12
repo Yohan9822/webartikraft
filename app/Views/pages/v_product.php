@@ -1,7 +1,27 @@
 <?= $this->include('template/v_header') ?>
+<?php
 
+use App\Models\Cmsfullcontent;
+
+$lang = service('request')->getLocale();
+$fullContent = new Cmsfullcontent();
+
+$furnishingImage1 = "";
+$getRow = $fullContent->getByKey($lang, 'furnishing-image-1');
+if (!empty($getRow)) {
+    $getRow->payload = json_decode($getRow->payload ?? '{}');
+
+    if (!empty($getRow->payload->image))
+        $getRow->payload->image = json_encode(files_preview($getRow->payload->image));
+
+    $getRow->payload->image = json_decode($getRow->payload->image, true);
+    $furnishingImage1 = $getRow->payload->image[0];
+} else {
+    $furnishingImage1 = base_url('public/images/home/9.jpg');
+}
+?>
 <div class="w-full h-full pb-10 flex flex-col gap-8">
-    <img data-src="<?= base_url('public/images/home/9.jpg') ?>" alt="gambar furnishing" class="lazy object-cover w-full h-[550px]">
+    <img data-src="<?= $furnishingImage1 ?>" alt="gambar furnishing" class="lazy object-cover w-full h-[550px]">
 
     <section class="splide py-16 px-[1rem] md:px-[3rem] bg-white text-center">
         <div class="mb-8 flex md:flex-row flex-col items-start justify-between w-full gap-4">

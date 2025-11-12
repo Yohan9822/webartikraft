@@ -33,7 +33,7 @@
     <div class="card w-100 rounded shadow-sm" style="position: relative;padding:12px;">
         <div class="dflex align-center justify-between">
             <span>
-                Update <b class="text-primary"><i>THE COMPANY</i></b> menu content
+                Update <b class="text-primary"><i>HOME FURNISHING</i></b> menu content
             </span>
 
             <div class="btn-group" role="group" aria-label="Language switcher">
@@ -64,7 +64,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <div class="border mt-4" id="load-page">
-            <?= $this->include('cms/contentcompany/contentcompany') ?>
+            <?= $this->include('cms/contentfurnishing/contentfurnishing') ?>
         </div>
     </div>
 </div>
@@ -107,7 +107,7 @@
                 dataType: 'json',
                 data: {
                     key,
-                    menu: 'company',
+                    menu: 'furnishing',
                     content,
                     _t: new Date().getTime()
                 },
@@ -143,7 +143,7 @@
             const formData = new FormData();
             formData.append('file', file);
             formData.append('key', key);
-            formData.append('menu', 'company');
+            formData.append('menu', 'furnishing');
 
             const oldSrc = imgEl.attr('src');
             imgEl.css('opacity', '0.5');
@@ -190,7 +190,7 @@
                 dataType: 'json',
                 data: {
                     lang: selectedLang,
-                    menu: 'company'
+                    menu: 'furnishing'
                 },
                 success: function(response) {
                     if (response.success && response.view) {

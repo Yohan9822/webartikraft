@@ -5,6 +5,7 @@ use App\Helpers\Privileges\PrivilegesUser;
 use App\Libraries\Config\BlueStickerConfig;
 use App\Libraries\Config\XenditApiConfig;
 use App\Libraries\Config\XenditConfig;
+use App\Models\Cmsfullcontent;
 use App\Models\Cmsproduct;
 use App\Models\CmsSlides;
 use App\Models\Cmsupdates;
@@ -624,11 +625,15 @@ function generateHistoryOrder($orderid, $status, $notes = null)
     }
 }
 
-function getSlideImage()
+function getSlideImage($type = 'home')
 {
     $slider = new CmsSlides();
 
-    $datas = $slider->getDataTable()->where('s.isactive is true')->get()->getResultObject();
+    $datas = $slider->getDataTable()
+        ->where('s.isactive is true')
+        ->where("lower(s.slidetype)", $type)
+        ->get()->getResultObject();
+
     if (empty($datas)) return null;
 
     $dts = [];
@@ -718,4 +723,22 @@ function formatBytes($bytes, $precision = 2)
     }
 
     return round(pow(1024, $base - $index), $precision) . ' ' . $suffixes[$index];
+}
+
+function getLangArray($lang = 'id')
+{
+    $model = new Cmsfullcontent();
+    $rows  = $model->getAllContent($lang);
+
+    $result = [];
+    foreach ($rows as $r) {
+        $result[$r->key] = $r->content;
+    }
+
+    return $result;
+}
+
+function dbLang($allCt, $key, $default = '')
+{
+    return $allCt[$key] ?? $default;
 }

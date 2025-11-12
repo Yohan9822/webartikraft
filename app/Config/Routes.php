@@ -165,6 +165,12 @@ $routes->group('cms/bamboo', $isLogged, function ($routes) {
     $routes->add('upload', 'Cms\ContentBamboo::uploadEditor');
     $routes->add('browse', 'Cms\ContentBamboo::browserEditor');
 });
+$routes->group('cms/contentfurnishing', $isLogged, function ($routes) {
+    $routes->add('', 'Cms\ContentFurnishing::index');
+});
+$routes->add('cms/updatefullcontent', 'Home::UpdateContent', $isLogged);
+$routes->add('cms/updateimage', 'Home::updateImageContent', $isLogged);
+$routes->add('cms/switchLang', 'Home::switchLanguage', $isLogged);
 
 
 // FRONT-END COMPRO

@@ -30,6 +30,8 @@ class ContentBamboo extends BaseController
         $data['section'] = 'Content Bamboo';
         $data['breadcrumb'] = $this->breadcrumb;
         $data['row'] = $this->bamboo->getDefaultContent();
+        $data['lang'] = getSession('cms_lang');
+        $data['content'] = getLangArray($data['lang']);
 
         return view('cms/contentbamboo/v_bamboo', $data);
     }
