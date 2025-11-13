@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Blue Sticker</title>
+    <title>Login | Web Artikraft</title>
     <link rel="stylesheet" href="<?= getURL('public/cms/css/template.css') ?>">
     <link rel="stylesheet" href="<?= getURL('public/cms/css/login.css') ?>">
     <link rel="stylesheet" href="<?= getURL('public/cms/css/boxicons.css') ?>">

@@ -81,16 +81,6 @@ if (!empty($getRow)) {
         <input type="file" class="hidden image-input" accept="image/*">
     </div>
 </section>
-<div id="imageUploadModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-md">
-        <h2 class="text-xl font-semibold mb-4">Change Image</h2>
-        <input type="file" id="imageFile" accept="image/*" class="block w-full mb-4 border p-2 rounded">
-        <div class="flex justify-end gap-2">
-            <button id="cancelUpload" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
-            <button id="confirmUpload" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Upload</button>
-        </div>
-    </div>
-</div>
 
 <section class="pb-[4rem] px-[1rem] md:px-[3rem]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">

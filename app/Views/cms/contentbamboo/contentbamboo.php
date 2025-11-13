@@ -127,7 +127,7 @@ for ($i = 1; $i <= 9; $i++) {
         <p class="w-full md:w-[80%] editable-text" data-key="bamboo-laminated-text-2" contenteditable="true">
             <?= $content['bamboo-laminated-text-2'] ?>
         </p>
-        <p class="w-full md:w-[80%] editable-text" data-key="bamboo-laminated-text" contenteditable="true">
+        <p class="w-full md:w-[80%] editable-text" data-key="bamboo-laminated-text-3" contenteditable="true">
             <?= $content['bamboo-laminated-text-3'] ?>
         </p>
     </div>
